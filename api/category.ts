@@ -3,8 +3,8 @@ import sources from './data'
 import type { VercelRequest, VercelResponse } from '@vercel/node'
 
 export default (request: VercelRequest, response: VercelResponse) => {
-  const { id = '1', pg = '1', t } = request.query
-  const sourceId = Number(id) || 1
+  const { sid = '1' } = request.query
+  const sourceId = Number(sid) || 1
   const source = sources.find((s) => s.id === sourceId)
   if (source) {
     const { api } = source
@@ -13,8 +13,6 @@ export default (request: VercelRequest, response: VercelResponse) => {
       method: 'GET',
       params: {
         ...request.query,
-        pg,
-        t,
       },
     })
       .then((res) => {
@@ -24,6 +22,6 @@ export default (request: VercelRequest, response: VercelResponse) => {
         response.status(500).json(error)
       })
   } else {
-    response.status(400).send(`error param id:${id}`)
+    response.status(400).send(`error param sid:${sid}`)
   }
 }

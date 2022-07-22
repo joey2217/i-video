@@ -1,4 +1,4 @@
-const sources = [
+export const SOURCES = [
   {
     id: 1,
     key: '39kan',
@@ -304,5 +304,3 @@ const sources = [
     group: '18+',
   },
 ]
-
-export default sources
