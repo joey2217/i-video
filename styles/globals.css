@@ -1,0 +1,30 @@
+/* @tailwind base; */
+@tailwind components;
+@tailwind utilities;
+
+@import '~antd/dist/antd.dark.css';
+
+#detail {
+  height: calc(100vh - 100px);
+  overflow: hidden;
+}
+
+.row {
+  @apply text-base flex mb-2;
+}
+
+.info-label {
+  @apply flex-shrink-0;
+}
+
+.info-label::after {
+  content: ':';
+  position: relative;
+  top: -0.5px;
+  margin: 0 8px 0 2px;
+}
+
+#info-tabs .ant-tabs-content{
+  height: calc(100vh - 150px);
+  overflow: auto;
+}
