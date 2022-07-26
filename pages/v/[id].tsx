@@ -42,7 +42,7 @@ const Detail: React.FC = () => {
     }
   }, [id])
   return (
-    <section className="flex" id="detail">
+    <section className="lg:flex" id="detail">
       <Head>
         <title>
           {`${video?.vod_name} - ${

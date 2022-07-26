@@ -1,4 +1,5 @@
 import React, { memo, useState } from 'react'
+import Link from 'next/link'
 import ActiveLink from './ActiveLink'
 
 const Header: React.FC = () => {
@@ -10,15 +11,12 @@ const Header: React.FC = () => {
       id="header"
     >
       <div className="md:flex h-12">
-        <div className="flex items-center justify-between h-full">
-          <div>
-            <a
-              className="text-2xl font-bold text-gray-800 transition-colors duration-200 transform dark:text-white lg:text-3xl hover:text-gray-700 dark:hover:text-gray-300"
-              href="#"
-            >
-              Brand
+        <div className="flex items-center justify-between h-full flex-shrink-0">
+          <Link href="/">
+            <a className="text-lg font-bold text-gray-800  transition-colors duration-200 transform dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
+              视频资源网
             </a>
-          </div>
+          </Link>
 
           <div
             className="flex items-center justify-center md:hidden cursor-pointer w-8 h-8 "
@@ -71,7 +69,7 @@ const Header: React.FC = () => {
           } w-full bg-gray-900 md:flex md:items-center md:justify-between`}
           onClick={() => show && setShow(false)}
         >
-          <nav className="flex flex-col px-2 py-3 -mx-4 md:flex-row md:mx-0 md:py-0">
+          <nav className="flex flex-col px-2 py-3 md:flex-row md:mx-0 md:py-0">
             <ActiveLink href="/">
               <a className="link">Home</a>
             </ActiveLink>
