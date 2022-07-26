@@ -1,7 +1,7 @@
 import React, { memo, useContext, useEffect, useState } from 'react'
 import Head from 'next/head'
 import { Empty } from 'antd'
-import FavoritesContext from '../context/favoritesContext'
+import FavoritesContext from '../context/FavoritesContext'
 import { Video } from '../types'
 import { fetchList } from '../utils/api'
 import VideoList from '../components/VideoList'

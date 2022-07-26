@@ -2,7 +2,7 @@ import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
 import Header from '../components/Header'
-import FavoritesContext from '../context/favoritesContext'
+import FavoritesContext from '../context/FavoritesContext'
 import useFavorites from '../hooks/useFavorites'
 
 function MyApp({ Component, pageProps }: AppProps) {

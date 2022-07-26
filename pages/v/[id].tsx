@@ -8,7 +8,7 @@ import type { Video, PlayItem } from '../../types'
 import { parseVideoPlayUrl } from '../../utils'
 import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
-import FavoritesContext from '../../context/favoritesContext'
+import FavoritesContext from '../../context/FavoritesContext'
 
 const { TabPane } = Tabs
 
