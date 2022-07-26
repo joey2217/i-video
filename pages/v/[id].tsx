@@ -1,12 +1,14 @@
-import React, { memo, useEffect, useState } from 'react'
+import React, { memo, useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { Button, Tabs } from 'antd'
+import Head from 'next/head'
 
-import { fetchVideo } from '../../api'
+import { fetchVideo } from '../../utils/api'
 import type { Video, PlayItem } from '../../types'
 import { parseVideoPlayUrl } from '../../utils'
 import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
+import FavoritesContext from '../../context/favoritesContext'
 
 const { TabPane } = Tabs
 
@@ -18,8 +20,11 @@ const Detail: React.FC = () => {
   const [show, setShow] = useState(true)
   const [liveList, setLiveList] = useState<PlayItem[]>([])
   const [playList, setPlayList] = useState<PlayItem[]>([])
-  const [playUrl, setPlayUrl] = useState('')
   const [playIndex, setPlayIndex] = useState(0)
+  const { favorites, addFavorite, removeFavorite } =
+    useContext(FavoritesContext)
+
+  const included = video ? favorites.includes(video?.vod_id) : false
 
   useEffect(() => {
     if (id) {
@@ -38,17 +43,25 @@ const Detail: React.FC = () => {
   }, [id])
   return (
     <section className="flex" id="detail">
-      <div className="flex-1">
-        {/* <Player
+      <Head>
+        <title>
+          {`${video?.vod_name} - ${
+            liveList.length > 0 ? liveList[playIndex].name : ''
+          } - `}
+          视频资源网
+        </title>
+      </Head>
+      <div className="lg:flex-1">
+        <Player
           liveUrl={liveList.length > 0 ? liveList[playIndex].url : undefined}
           playUrl={playList.length > 0 ? playList[playIndex].url : undefined}
-        /> */}
+        />
       </div>
-      <div className="flex items-center">
+      <div className="hidden lg:flex items-center">
         <svg
           className="cursor-pointer fill-white hover:fill-green-400 transition ease-in-out delay-150"
           style={{
-            transform: show ? '' : 'rotate(180deg)',
+            transform: show ? 'none' : 'rotate(180deg)',
           }}
           onClick={() => setShow((s) => !s)}
           viewBox="0 0 1024 1024"
@@ -61,19 +74,51 @@ const Detail: React.FC = () => {
         </svg>
       </div>
       <div
-        id='info-tabs'
-        className={`${
-          show ? 'w-80' : 'w-0'
-        } transition-all ease-in-out delay-150`}
+        id="info-tabs"
+        className={`w-full ${
+          show ? 'lg:w-96' : 'lg:w-0'
+        } transition-all ease-in-out delay-150 mt-4 lg:mt-0`}
       >
         <Tabs defaultActiveKey="1" type="card" size="small">
           <TabPane tab="视频" key="1">
-            <div>{video?.vod_name}</div>
-            <div>收藏</div>
-            <div className="grid grid-cols-4 gap-2">
+            <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
+              <span className="text-lg font-bold truncate">
+                {video?.vod_name}
+              </span>
+              <div
+                className="cursor-pointer flex items-center"
+                onClick={() => {
+                  if (video) {
+                    if (included) {
+                      removeFavorite(video.vod_id)
+                    } else {
+                      addFavorite(video.vod_id)
+                    }
+                  }
+                }}
+              >
+                <svg
+                  className={included ? 'fill-white' : ''}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z"
+                    stroke="#fff"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {included ? '取消收藏' : '收藏'}
+              </div>
+            </div>
+            <div className="grid grid-cols-6 lg:grid-cols-4 gap-1">
               {liveList.map((v, index) => (
                 <Button
                   key={v.url}
+                  size="small"
                   type={playIndex === index ? 'primary' : 'default'}
                   onClick={() => setPlayIndex(index)}
                 >

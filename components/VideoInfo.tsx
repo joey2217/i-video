@@ -6,13 +6,15 @@ const VideoInfo: React.FC<Video> = (video) => {
   return (
     <div>
       <div className="text-base font-bold mb-2 truncate">{video.vod_name}</div>
-      <Image
-        src={video.vod_pic}
-        width={270}
-        height={400}
-        layout="responsive"
-        alt={`${video.vod_name}封面`}
-      />
+      <div className="max-w-xs text-center">
+        <Image
+          src={video.vod_pic}
+          width={270}
+          height={400}
+          layout="responsive"
+          alt={`${video.vod_name}封面`}
+        />
+      </div>
       <div className="row">
         <div className="info-label">别名</div>
         <div className="info-content">{video.vod_sub}</div>

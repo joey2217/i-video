@@ -1,5 +1,5 @@
 import type { Params, VideoResponse, Video } from '../types'
-import request from '../utils/request'
+import request from './request'
 
 export function fetchList(params?: Partial<Params>) {
   return request({

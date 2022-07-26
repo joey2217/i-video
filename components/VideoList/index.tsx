@@ -1,22 +1,36 @@
 import React, { memo } from 'react'
 import VideoCard from './VideoCard'
+import LoadingCard from './LoadingCard'
 import type { Video } from '../../types'
 import { Pagination } from 'antd'
 
 interface Props {
   loading?: boolean
+  count?: number
   videoList: Video[]
-  total: number
-  onPageChange: (page: number) => void
+  pagination?: boolean
+  total?: number
+  onPageChange?: (page: number) => void
 }
 
 // loading
 const VideoList: React.FC<Props> = ({
   loading,
+  count = 24,
   videoList,
-  total,
+  total = 0,
+  pagination = true,
   onPageChange,
 }) => {
+  if (loading) {
+    return (
+      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
+        {Array.from({ length: count }).map((_, index) => (
+          <LoadingCard key={index} />
+        ))}
+      </div>
+    )
+  }
   return (
     <div>
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
@@ -24,15 +38,17 @@ const VideoList: React.FC<Props> = ({
           <VideoCard key={video.vod_id} video={video} />
         ))}
       </div>
-      <div className="p-4 text-center">
-        <Pagination
-          size="small"
-          onChange={onPageChange}
-          total={total}
-          showSizeChanger={false}
-          showTotal={(total) => `共 ${total} 资源`}
-        />
-      </div>
+      {pagination && (
+        <div className="p-4 text-center">
+          <Pagination
+            size="small"
+            onChange={onPageChange}
+            total={total}
+            showSizeChanger={false}
+            showTotal={(total) => `共 ${total} 资源`}
+          />
+        </div>
+      )}
     </div>
   )
 }

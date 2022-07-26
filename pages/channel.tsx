@@ -1,7 +1,8 @@
 import { useRouter } from 'next/router'
 import React, { memo, useEffect, useState } from 'react'
+import Head from 'next/head'
 import { Input } from 'antd'
-import { fetchList } from '../api'
+import { fetchList } from '../utils/api'
 import VideoList from '../components/VideoList'
 import type { Video } from '../types'
 
@@ -14,6 +15,7 @@ const Channel: React.FC = () => {
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [keyword, setKeyword] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const onSearch = (val: string) => {
     setKeyword(val)
@@ -21,28 +23,35 @@ const Channel: React.FC = () => {
 
   useEffect(() => {
     if (channel) {
-      fetchList({ type: channel as string, keyword, page, size: 24 }).then(
-        (data) => {
+      setLoading(true)
+      fetchList({ type: channel as string, keyword, page, size: 24 })
+        .then((data) => {
           console.log(data)
           const { typeName, list, total } = data
           setChannelName(typeName)
           setVideoList(list)
           setTotal(total)
-        }
-      )
+        })
+        .finally(() => {
+          setLoading(false)
+        })
     }
   }, [channel, keyword, page])
 
   return (
-    <section>
-      <Input.Search
-        placeholder="input search text"
-        onSearch={onSearch}
-        enterButton
-      />
-      <div>频道 {channelName}</div>
+    <section className="page">
+      <Head>
+        <title>{channelName}频道 - 视频资源网</title>
+      </Head>
+      <Input.Search placeholder="输入关键词" onSearch={onSearch} enterButton />
+      <div className="py-2 text-base font-bold">当前频道 : {channelName}</div>
       <div>
-        <VideoList videoList={videoList} total={total} onPageChange={setPage}/>
+        <VideoList
+          loading={loading}
+          videoList={videoList}
+          total={total}
+          onPageChange={setPage}
+        />
       </div>
     </section>
   )

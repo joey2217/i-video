@@ -4,11 +4,6 @@
 
 @import '~antd/dist/antd.dark.css';
 
-#detail {
-  height: calc(100vh - 100px);
-  overflow: hidden;
-}
-
 .row {
   @apply text-base flex mb-2;
 }
@@ -24,7 +19,63 @@
   margin: 0 8px 0 2px;
 }
 
-#info-tabs .ant-tabs-content{
-  height: calc(100vh - 150px);
-  overflow: auto;
+/* lg */
+@media (min-width: 1024px) {
+  #info-tabs .ant-tabs-content {
+    height: calc(100vh - 150px);
+    overflow: auto;
+  }
+  #detail {
+    height: calc(100vh - 100px);
+    overflow: hidden;
+  }
+}
+
+/* header */
+#header .link {
+  color: #ffffffd9;
+  @apply text-base px-1 md:px-2;
+}
+#header .link:hover {
+  color: #fff;
+}
+#header .link.active {
+  color: #fff;
+  @apply font-bold;
+}
+
+/* page */
+
+.page {
+  @apply md:p-2 lg:p-4;
+}
+
+
+/* scrollbar */
+#info-tabs .ant-tabs-content::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+#info-tabs .ant-tabs-content::-webkit-scrollbar-track {
+  width: 6px;
+  background: rgba(#101F1C, 0.1);
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+}
+
+#info-tabs .ant-tabs-content::-webkit-scrollbar-thumb {
+  background-color: rgba(144,147,153,.5);
+  background-clip: padding-box;
+  min-height: 28px;
+  -webkit-border-radius: 2em;
+  -moz-border-radius: 2em;
+  border-radius: 2em;
+  transition: background-color .3s;
+  cursor: pointer;
+}
+
+#info-tabs .ant-tabs-content::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(144,147,153,.3);
 }
