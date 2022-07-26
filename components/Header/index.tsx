@@ -7,13 +7,13 @@ const Header: React.FC = () => {
 
   return (
     <header
-      className="bg-gray-900 hover:shadow-md sticky top-0 z-50"
+      className="bg-gray-900 hover:shadow-md sticky top-0 z-50 px-0 md:px-2 lg:px-4"
       id="header"
     >
       <div className="md:flex h-12">
         <div className="flex items-center justify-between h-full flex-shrink-0">
           <Link href="/">
-            <a className="text-lg font-bold text-gray-800  transition-colors duration-200 transform dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
+            <a className="text-lg text-gray-800  transition-colors duration-200 transform dark:text-white hover:text-gray-700 dark:hover:text-gray-300">
               视频资源网
             </a>
           </Link>
@@ -71,13 +71,13 @@ const Header: React.FC = () => {
         >
           <nav className="flex flex-col px-2 py-3 md:flex-row md:mx-0 md:py-0">
             <ActiveLink href="/">
-              <a className="link">Home</a>
+              <a className="link">首页</a>
             </ActiveLink>
-            <ActiveLink href="/channel?channel=17">
-              <a className="link">Channel</a>
+            <ActiveLink href="/channel?channel=2">
+              <a className="link">频道</a>
             </ActiveLink>
             <ActiveLink href="/favorites">
-              <a className="link">Favorites</a>
+              <a className="link">收藏</a>
             </ActiveLink>
           </nav>
         </div>

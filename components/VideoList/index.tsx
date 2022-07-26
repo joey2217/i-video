@@ -24,7 +24,11 @@ const VideoList: React.FC<Props> = ({
 }) => {
   if (loading) {
     return (
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
+      <div
+        className={`grid grid-cols-2 md:grid-cols-4 ${
+          count === 8 ? 'lg:grid-cols-8' : 'lg:grid-cols-6 xl:grid-cols-8'
+        } gap-2`}
+      >
         {Array.from({ length: count }).map((_, index) => (
           <LoadingCard key={index} />
         ))}
@@ -33,7 +37,11 @@ const VideoList: React.FC<Props> = ({
   }
   return (
     <div>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 xl:grid-cols-8 gap-2">
+      <div
+        className={`grid grid-cols-2 md:grid-cols-4 ${
+          count === 8 ? 'lg:grid-cols-8' : 'lg:grid-cols-6 xl:grid-cols-8'
+        } gap-2`}
+      >
         {videoList.map((video) => (
           <VideoCard key={video.vod_id} video={video} />
         ))}

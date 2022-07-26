@@ -24,7 +24,6 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
         const [name, url] = part.split('$')
         return { name: parseName(name), url }
       })
-      .reverse()
   )
   const [option1, option2] = options
   let m3u8List: PlayItem[] = []

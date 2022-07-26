@@ -1,4 +1,4 @@
-import type { Params, VideoResponse, Video } from '../types'
+import type { Params, VideoResponse, Video, LatestData } from '../types'
 import request from './request'
 
 export function fetchList(params?: Partial<Params>) {
@@ -11,7 +11,7 @@ export function fetchList(params?: Partial<Params>) {
   })
 }
 
-export function fetchVideo(id: number|string, params?: Partial<Params>) {
+export function fetchVideo(id: number | string, params?: Partial<Params>) {
   return request({
     url: '/video',
     method: 'GET',
@@ -26,4 +26,11 @@ export function fetchVideo(id: number|string, params?: Partial<Params>) {
     }
     throw new Error(`不存在ID为${id}数据`)
   })
+}
+
+export function fetchLatestList() {
+  return request({
+    url: '/latest',
+    method: 'GET',
+  }).then((res) => res.data as LatestData)
 }

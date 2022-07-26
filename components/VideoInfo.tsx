@@ -1,6 +1,10 @@
 import React, { memo } from 'react'
 import Image from 'next/image'
+import dayjs from 'dayjs'
 import type { Video } from '../types'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 const VideoInfo: React.FC<Video> = (video) => {
   return (
@@ -57,11 +61,11 @@ const VideoInfo: React.FC<Video> = (video) => {
       </div>
       <div className="row">
         <div className="info-label">豆瓣评分</div>
-        <div className="info-content">{video.vod_douban_score}</div>
+        <div className="info-content">{video.vod_douban_score || '无'}</div>
       </div>
       <div className="row">
         <div className="info-label">更新时间</div>
-        <div className="info-content">{video.vod_time}</div>
+        <div className="info-content">{dayjs(video.vod_time).fromNow()}</div>
       </div>
       <div className="row ">
         <div className="info-label">演员</div>

@@ -1,7 +1,11 @@
 import React, { memo } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import dayjs from 'dayjs'
 import { Video } from '../../types'
+import relativeTime from 'dayjs/plugin/relativeTime'
+
+dayjs.extend(relativeTime)
 
 interface Props {
   video: Video
@@ -23,7 +27,7 @@ const VideoCard: React.FC<Props> = ({ video }) => {
             豆瓣 : {video.vod_douban_score || '无'}
           </div>
           <div className="absolute bottom-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1">
-            {video.vod_time}更新
+            {dayjs(video.vod_time).fromNow()}更新
           </div>
         </div>
         <div className="truncate text-base text-white text-opacity-90 p-1 hover:text-green-400">
