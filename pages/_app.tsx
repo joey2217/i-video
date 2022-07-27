@@ -1,11 +1,13 @@
 import '../styles/globals.css'
 import type { AppProps } from 'next/app'
 import Head from 'next/head'
+import { ConfigProvider } from 'antd'
 import dayjs from 'dayjs'
 import Header from '../components/Header'
 import FavoritesContext from '../context/FavoritesContext'
 import useFavorites from '../hooks/useFavorites'
 import 'dayjs/locale/zh-cn'
+import zhCN from 'antd/lib/locale/zh_CN'
 
 dayjs.locale('zh-cn')
 
@@ -18,11 +20,13 @@ function MyApp({ Component, pageProps }: AppProps) {
         <meta name="description" content="a video resource website" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <Header />
-      <main>
-        <Component {...pageProps} />
-      </main>
-      <footer className="text-center pb-4">所有资源均来自互联网</footer>
+      <ConfigProvider locale={zhCN}>
+        <Header />
+        <main>
+          <Component {...pageProps} />
+        </main>
+        <footer className="text-center py-4">所有资源均来自互联网</footer>
+      </ConfigProvider>
     </FavoritesContext.Provider>
   )
 }

@@ -21,6 +21,7 @@ const VideoCard: React.FC<Props> = ({ video }) => {
             width={270}
             height={400}
             layout="responsive"
+            priority
             alt={`${video.vod_name}封面`}
           />
           <div className="absolute top-0 right-0  text-sm bg-gray-400 bg-opacity-80 text-white px-1">

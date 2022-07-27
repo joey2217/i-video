@@ -3,14 +3,17 @@ import Image from 'next/image'
 import dayjs from 'dayjs'
 import type { Video } from '../types'
 import relativeTime from 'dayjs/plugin/relativeTime'
+import Link from 'next/link'
 
 dayjs.extend(relativeTime)
 
 const VideoInfo: React.FC<Video> = (video) => {
   return (
     <div>
-      <div className="text-base font-bold mb-2 truncate">{video.vod_name}</div>
-      <div className="max-w-xs text-center">
+      <div className="text-base font-bold  mb-1 lg:mb-2 truncate">
+        {video.vod_name}
+      </div>
+      <div className="max-w-xs text-center mb-1 lg:mb-2">
         <Image
           src={video.vod_pic}
           width={270}
@@ -44,7 +47,7 @@ const VideoInfo: React.FC<Video> = (video) => {
       <div className="row">
         <div className="info-label">完结</div>
         <div className="info-content">
-          {video.vod_isend === 0 ? '连载中' : '已完结'}
+          {video.vod_isend === 0 ? '更新中' : '已完结'}
         </div>
       </div>
       <div className="row">
@@ -57,7 +60,11 @@ const VideoInfo: React.FC<Video> = (video) => {
       </div>
       <div className="row">
         <div className="info-label">分类</div>
-        <div className="info-content">{video.type_name}</div>
+        <div className="info-content">
+          <Link href={`/channel?channel=${video.type_id}`}>
+            <a>{video.type_name}</a>
+          </Link>
+        </div>
       </div>
       <div className="row">
         <div className="info-label">豆瓣评分</div>

@@ -5,7 +5,7 @@
 @import '~antd/dist/antd.dark.css';
 
 .row {
-  @apply text-base flex mb-2;
+  @apply text-base flex mb-1 lg:mb-2;
 }
 
 .info-label {

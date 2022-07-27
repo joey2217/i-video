@@ -23,8 +23,6 @@ const BannerSwiper: React.FC<Props> = ({ bannerData }) => {
       loop
       pagination={{ clickable: true }}
       modules={[Pagination, Navigation, Autoplay]}
-      onSlideChange={() => console.log('slide change')}
-      onSwiper={(swiper) => console.log(swiper)}
     >
       {bannerData.map((v) => (
         <SwiperSlide
@@ -47,9 +45,10 @@ const BannerSlide: React.FC<Banner> = (banner) => (
       height={670}
       layout="responsive"
       alt={banner.name}
+      priority
     />
-    <div className="absolute left-28 bottom-16 w-full text-white">
-      <div className="text-2xl font-bold">{banner.name}</div>
+    <div className="absolute text-center bottom-7 w-full text-white">
+      <div className="text-lg md:text-xl lg:text-2xl font-bold">{banner.name}</div>
       <div className="text-base">{banner.intro}</div>
     </div>
   </div>

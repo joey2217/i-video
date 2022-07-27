@@ -43,7 +43,14 @@ const Channel: React.FC = () => {
       <Head>
         <title>{channelName}频道 - 视频资源网</title>
       </Head>
-      <Input.Search placeholder="输入关键词" onSearch={onSearch} enterButton />
+      <div className="text-center">
+        <Input.Search
+          className="w-full md:w-1/2 lg:1/3"
+          placeholder="输入关键词"
+          onSearch={onSearch}
+          enterButton
+        />
+      </div>
       <div className="py-2 text-base font-bold">当前频道 : {channelName}</div>
       <div>
         <VideoList

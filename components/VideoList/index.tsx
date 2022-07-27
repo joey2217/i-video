@@ -1,8 +1,8 @@
 import React, { memo } from 'react'
+import { Pagination } from 'antd'
 import VideoCard from './VideoCard'
 import LoadingCard from './LoadingCard'
 import type { Video } from '../../types'
-import { Pagination } from 'antd'
 
 interface Props {
   loading?: boolean
@@ -13,7 +13,6 @@ interface Props {
   onPageChange?: (page: number) => void
 }
 
-// loading
 const VideoList: React.FC<Props> = ({
   loading,
   count = 24,

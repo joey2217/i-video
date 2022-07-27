@@ -47,11 +47,9 @@ const Header: React.FC = () => {
             ) : (
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                fill="none"
                 viewBox="0 0 24 24"
                 strokeWidth="2"
                 stroke="currentColor"
-                aria-hidden="true"
               >
                 <path
                   strokeLinecap="round"
@@ -75,6 +73,9 @@ const Header: React.FC = () => {
             </ActiveLink>
             <ActiveLink href="/channel?channel=2">
               <a className="link">频道</a>
+            </ActiveLink>
+            <ActiveLink href="/search">
+              <a className="link">搜索</a>
             </ActiveLink>
             <ActiveLink href="/favorites">
               <a className="link">收藏</a>
