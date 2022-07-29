@@ -16,6 +16,7 @@ const SearchItem: React.FC<Video> = (video) => {
           width={270}
           height={400}
           layout="responsive"
+          priority
           alt={`${video.vod_name}封面`}
         />
         <div className="absolute top-0 right-0 px-1 text-xs lg:text-sm">

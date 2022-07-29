@@ -1,9 +1,13 @@
 import React, { memo, useState } from 'react'
 import Link from 'next/link'
+import { Input } from 'antd'
+import { useRouter } from 'next/router'
 import ActiveLink from './ActiveLink'
 
 const Header: React.FC = () => {
+  const router = useRouter()
   const [show, setShow] = useState(false)
+  const onSearch = (value: string) => router.push(`/search?q=${value}`)
 
   return (
     <header
@@ -27,7 +31,7 @@ const Header: React.FC = () => {
                 width="24"
                 height="24"
                 viewBox="0 0 48 48"
-                fill="none"
+                fill="currentColor"
                 stroke="currentColor"
                 xmlns="http://www.w3.org/2000/svg"
               >
@@ -63,11 +67,11 @@ const Header: React.FC = () => {
 
         <div
           className={`${
-            show ? 'block' : 'hidden'
-          } w-full bg-gray-900 md:flex md:items-center md:justify-between`}
+            show ? 'flex' : 'hidden'
+          }  bg-gray-900 md:flex md:items-center md:justify-between`}
           onClick={() => show && setShow(false)}
         >
-          <nav className="flex flex-col px-2 py-3 md:flex-row md:mx-0 md:py-0">
+          <nav className="w-full flex flex-col px-2 py-3 md:flex-row md:mx-0 md:py-0">
             <ActiveLink href="/">
               <a className="link">首页</a>
             </ActiveLink>
@@ -81,6 +85,17 @@ const Header: React.FC = () => {
               <a className="link">收藏</a>
             </ActiveLink>
           </nav>
+        </div>
+        <div
+          className={`${
+            show ? 'flex pb-4 px-1' : 'hidden'
+          } md:w-80 md:flex items-center ml-auto bg-gray-900`}
+        >
+          <Input.Search
+            placeholder="输入关键词"
+            onSearch={onSearch}
+            enterButton
+          />
         </div>
       </div>
     </header>

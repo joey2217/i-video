@@ -1,13 +1,16 @@
 import React, { memo, useEffect, useState } from 'react'
 import Head from 'next/head'
+import Link from 'next/link'
+import { useRouter } from 'next/router'
 import { Input, List, Skeleton, TreeSelect } from 'antd'
 import { fetchList } from '../utils/api'
 import type { Video } from '../types'
 import { CHANNEL_DATA } from '../utils/constants'
 import SearchItem from '../components/SearchItem'
-import Link from 'next/link'
 
 const Search: React.FC = () => {
+  const router = useRouter()
+  const { q } = router.query
   const [channel, setChannel] = useState('')
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
@@ -33,6 +36,12 @@ const Search: React.FC = () => {
       })
   }, [channel, keyword, page])
 
+  useEffect(() => {
+    if (q) {
+      setKeyword(q as string)
+    }
+  }, [q])
+
   return (
     <section className="page">
       <Head>
@@ -52,6 +61,7 @@ const Search: React.FC = () => {
           }
           className="w-full md:w-1/2 lg:1/3"
           placeholder="输入关键词"
+          defaultValue={q}
           onSearch={onSearch}
           enterButton
         />
@@ -62,9 +72,9 @@ const Search: React.FC = () => {
           dataSource={videoList}
           pagination={{
             total,
-            size:'small',
-            pageSize:10,
-            onChange:setPage,
+            size: 'small',
+            pageSize: 10,
+            onChange: setPage,
           }}
           renderItem={(item) => (
             <List.Item key={item.vod_id}>

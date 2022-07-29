@@ -9,6 +9,7 @@ import { parseVideoPlayUrl } from '../../utils'
 import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
 import FavoritesContext from '../../context/FavoritesContext'
+import Link from 'next/link'
 
 const { TabPane } = Tabs
 
@@ -80,7 +81,7 @@ const Detail: React.FC = () => {
         } transition-all ease-in-out delay-150 mt-4 lg:mt-0`}
       >
         <Tabs defaultActiveKey="1" type="card" size="small">
-          <TabPane tab="视频" key="1">
+          <TabPane tab="在线播放" key="1">
             <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
               <span className="text-lg font-bold truncate">
                 {video?.vod_name}
@@ -127,7 +128,68 @@ const Detail: React.FC = () => {
               ))}
             </div>
           </TabPane>
-          <TabPane tab="简介" key="2">
+          <TabPane tab="云播(站外)" key="2">
+            <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
+              <span className="text-lg font-bold truncate">
+                {video?.vod_name}
+              </span>
+              <div
+                className="cursor-pointer flex items-center"
+                onClick={() => {
+                  if (video) {
+                    if (included) {
+                      removeFavorite(video.vod_id)
+                    } else {
+                      addFavorite(video.vod_id)
+                    }
+                  }
+                }}
+              >
+                <svg
+                  className={included ? 'fill-white' : ''}
+                  width="16"
+                  height="16"
+                  viewBox="0 0 48 48"
+                  xmlns="http://www.w3.org/2000/svg"
+                >
+                  <path
+                    d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z"
+                    stroke="#fff"
+                    strokeWidth="4"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+                {included ? '取消收藏' : '收藏'}
+              </div>
+            </div>
+            <div className="grid grid-cols-6 lg:grid-cols-4 gap-1">
+              {playList.map((v, index) => (
+                <Button
+                  key={v.url}
+                  size="small"
+                  href={v.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  title="跳转"
+                >
+                  {v.name}
+                  <svg
+                    className="ml-1"
+                    viewBox="0 0 1024 1024"
+                    version="1.1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="12"
+                    height="12"
+                    fill="currentColor"
+                  >
+                    <path d="M843.648 981.333333H89.6A46.08 46.08 0 0 1 42.666667 934.485333V183.253333a46.08 46.08 0 0 1 46.933333-46.890666H512c26.581333 0 46.933333 20.309333 46.933333 46.890666A46.08 46.08 0 0 1 512 230.101333H136.533333v657.493334h660.181334v-373.248a46.08 46.08 0 0 1 46.933333-46.848c26.624 0 46.933333 20.309333 46.933333 46.848v418.56c0 26.581333-20.309333 48.426667-46.933333 48.426666zM934.4 420.650667a46.08 46.08 0 0 1-46.933333-46.890667V136.362667h-237.781334a46.08 46.08 0 0 1-46.933333-46.848A46.08 46.08 0 0 1 649.685333 42.666667H934.4c26.581333 0 46.933333 20.309333 46.933333 46.848V373.76c0 25.002667-21.888 46.890667-46.933333 46.890667z"></path>
+                    <path d="M374.314667 695.509333c-12.501333 0-23.466667-4.693333-32.853334-14.08-18.773333-18.730667-18.773333-48.384 0-65.578666L879.658667 78.592c18.773333-18.773333 48.469333-18.773333 65.706666 0 18.773333 18.773333 18.773333 48.426667 0 65.578667L407.168 681.472c-9.386667 9.386667-20.309333 14.08-32.853333 14.08z"></path>
+                  </svg>
+                </Button>
+              ))}
+            </div>
+          </TabPane>
+          <TabPane tab="简介" key="3">
             {video && <VideoInfo {...video} />}
           </TabPane>
         </Tabs>
