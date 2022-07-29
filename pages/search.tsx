@@ -5,12 +5,12 @@ import type { GetServerSideProps } from 'next'
 import { Input, List, Skeleton, TreeSelect } from 'antd'
 import { fetchList } from '../utils/api'
 import type { Video } from '../types'
-import { CHANNEL_DATA } from '../utils/constants'
+import { CHANNEL_DATA, DEFALUT_VIDEO } from '../utils/constants'
 import SearchItem from '../components/SearchItem'
 
 const Search: React.FC<{ q: string }> = ({ q = '' }) => {
   const [channel, setChannel] = useState('')
-  const [videoList, setVideoList] = useState<Video[]>([])
+  const [videoList, setVideoList] = useState<Video[]>([DEFALUT_VIDEO])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [keyword, setKeyword] = useState<string | undefined>(undefined)
@@ -104,7 +104,7 @@ export default memo(Search)
 export const getServerSideProps: GetServerSideProps = async (context) => {
   return {
     props: {
-      q: context.query.q,
-    }
+      q: context.query.q || '',
+    },
   }
 }

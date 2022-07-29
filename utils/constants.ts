@@ -67,31 +67,31 @@ export const CHANNEL_DATA = [
     children: [
       {
         title: '内地剧',
-        value: '20'
+        value: '20',
       },
       {
         title: '香港剧',
-        value: '4'
+        value: '4',
       },
       {
         title: '台湾剧',
-        value: '28'
+        value: '28',
       },
       {
         title: '欧美剧',
-        value: '3'
+        value: '3',
       },
       {
         title: '韩剧',
-        value: '5'
+        value: '5',
       },
       {
         title: '日剧',
-        value: '6'
+        value: '6',
       },
       {
         title: '马泰剧',
-        value: '7'
+        value: '7',
       },
     ],
   },
@@ -105,16 +105,44 @@ export const CHANNEL_DATA = [
     children: [
       {
         title: '国漫',
-        value: '24'
+        value: '24',
       },
       {
         title: '日漫',
-        value: '25'
+        value: '25',
       },
       {
         title: '欧美',
-        value: '26'
+        value: '26',
       },
-    ]
+    ],
   },
 ]
+
+export const DEFALUT_VIDEO = {
+  vod_id: 0,
+  vod_name: 'loading',
+  type_id: 23,
+  type_name: 'loading',
+  vod_time: '',
+  vod_play_from: '',
+  type_id_1: 0,
+  vod_sub: 'loading',
+  vod_status: '',
+  vod_tag: '',
+  vod_pic: '/loading.png',
+  vod_actor: '',
+  vod_director: '',
+  vod_pubdate: '',
+  vod_total: 1,
+  vod_area: '',
+  vod_lang: '',
+  vod_year: '',
+  vod_isend: 1,
+  vod_remarks: '正片',
+  vod_score: '',
+  vod_douban_id: 0,
+  vod_douban_score: '',
+  vod_content:'',
+  vod_play_url: '',
+}
