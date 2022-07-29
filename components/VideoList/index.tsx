@@ -21,19 +21,6 @@ const VideoList: React.FC<Props> = ({
   pagination = true,
   onPageChange,
 }) => {
-  if (loading) {
-    return (
-      <div
-        className={`grid grid-cols-2 md:grid-cols-4 ${
-          count === 8 ? 'lg:grid-cols-8' : 'lg:grid-cols-6 xl:grid-cols-8'
-        } gap-2`}
-      >
-        {Array.from({ length: count }).map((_, index) => (
-          <LoadingCard key={index} />
-        ))}
-      </div>
-    )
-  }
   return (
     <div>
       <div
@@ -41,9 +28,13 @@ const VideoList: React.FC<Props> = ({
           count === 8 ? 'lg:grid-cols-8' : 'lg:grid-cols-6 xl:grid-cols-8'
         } gap-2`}
       >
-        {videoList.map((video) => (
-          <VideoCard key={video.vod_id} video={video} />
-        ))}
+        {loading
+          ? Array.from({ length: count }).map((_, index) => (
+              <LoadingCard key={index} />
+            ))
+          : videoList.map((video) => (
+              <VideoCard key={video.vod_id} video={video} />
+            ))}
       </div>
       {pagination && (
         <div className="p-4 text-center">

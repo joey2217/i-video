@@ -33,6 +33,10 @@ const Channel: React.FC = () => {
           setTotal(total)
         })
         .finally(() => {
+          window.scroll({
+            top: 0,
+            behavior: 'smooth',
+          })
           setLoading(false)
         })
     }

@@ -33,6 +33,10 @@ const Search: React.FC = () => {
       })
       .finally(() => {
         setLoading(false)
+        window.scroll({
+          top: 0,
+          behavior: 'smooth',
+        })
       })
   }, [channel, keyword, page])
 
@@ -75,6 +79,8 @@ const Search: React.FC = () => {
             size: 'small',
             pageSize: 10,
             onChange: setPage,
+            showSizeChanger: false,
+            showTotal:(total) => `共 ${total} 资源`
           }}
           renderItem={(item) => (
             <List.Item key={item.vod_id}>
