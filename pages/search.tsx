@@ -1,21 +1,19 @@
 import React, { memo, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { useRouter } from 'next/router'
+import type { GetServerSideProps } from 'next'
 import { Input, List, Skeleton, TreeSelect } from 'antd'
 import { fetchList } from '../utils/api'
 import type { Video } from '../types'
 import { CHANNEL_DATA } from '../utils/constants'
 import SearchItem from '../components/SearchItem'
 
-const Search: React.FC = () => {
-  const router = useRouter()
-  const { q } = router.query
+const Search: React.FC<{ q: string }> = ({ q = '' }) => {
   const [channel, setChannel] = useState('')
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
-  const [keyword, setKeyword] = useState('')
+  const [keyword, setKeyword] = useState<string | undefined>(undefined)
   const [loading, setLoading] = useState(false)
 
   const onSearch = (val: string) => {
@@ -23,6 +21,9 @@ const Search: React.FC = () => {
   }
 
   useEffect(() => {
+    if (keyword == undefined) {
+      return
+    }
     setLoading(true)
     fetchList({ type: channel as string, keyword, page, size: 10 })
       .then((data) => {
@@ -41,9 +42,7 @@ const Search: React.FC = () => {
   }, [channel, keyword, page])
 
   useEffect(() => {
-    if (q) {
-      setKeyword(q as string)
-    }
+    setKeyword(q as string)
   }, [q])
 
   return (
@@ -66,6 +65,7 @@ const Search: React.FC = () => {
           className="w-full md:w-1/2 lg:1/3"
           placeholder="输入关键词"
           defaultValue={q}
+          allowClear
           onSearch={onSearch}
           enterButton
         />
@@ -80,7 +80,7 @@ const Search: React.FC = () => {
             pageSize: 10,
             onChange: setPage,
             showSizeChanger: false,
-            showTotal:(total) => `共 ${total} 资源`
+            showTotal: (total) => `共 ${total} 资源`,
           }}
           renderItem={(item) => (
             <List.Item key={item.vod_id}>
@@ -100,3 +100,11 @@ const Search: React.FC = () => {
 }
 
 export default memo(Search)
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  return {
+    props: {
+      q: context.query.q,
+    }
+  }
+}

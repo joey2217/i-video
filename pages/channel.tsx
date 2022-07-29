@@ -53,6 +53,7 @@ const Channel: React.FC = () => {
           placeholder="输入关键词"
           onSearch={onSearch}
           enterButton
+          allowClear
         />
       </div>
       <div className="py-2 text-base font-bold">当前频道 : {channelName}</div>

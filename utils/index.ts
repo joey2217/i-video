@@ -18,12 +18,10 @@ const separator = '$$$'
 export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
   const options = vod_play_from.split(separator)
   const blocks = vod_play_url.split(separator).map((item: string) =>
-    item
-      .split('#')
-      .map((part: string) => {
-        const [name, url] = part.split('$')
-        return { name: parseName(name), url }
-      })
+    item.split('#').map((part: string) => {
+      const [name, url] = part.split('$')
+      return { name: parseName(name), url }
+    })
   )
   const [option1, option2] = options
   let m3u8List: PlayItem[] = []
@@ -40,3 +38,21 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
     yunList,
   }
 }
+
+// function debounce(func: Function, wait = 500, immediate: false) {
+//   let timer: NodeJS.Timeout | undefined
+//   return (...args: any[]) => {
+//     if (timer) clearTimeout(timer)
+//     if (immediate) {
+//       const callNow = !timer
+//       timer = setTimeout(() => {
+//         timer = undefined
+//       }, wait)
+//       if (callNow) func(...args)
+//     } else {
+//       timer = setTimeout(function () {
+//         func(...args)
+//       }, wait)
+//     }
+//   }
+// }

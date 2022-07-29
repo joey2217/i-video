@@ -7,7 +7,12 @@ import ActiveLink from './ActiveLink'
 const Header: React.FC = () => {
   const router = useRouter()
   const [show, setShow] = useState(false)
-  const onSearch = (value: string) => router.push(`/search?q=${value}`)
+  const [value, setValue] = useState('')
+  const onSearch = (val: string) => {
+    setValue('')
+    setShow(false)
+    router.push(`/search?q=${val}`)
+  }
 
   return (
     <header
@@ -87,12 +92,15 @@ const Header: React.FC = () => {
           </nav>
         </div>
         <div
-          className={`${
-            show ? 'flex pb-4 px-1' : 'hidden'
-          } md:w-80 md:flex items-center ml-auto bg-gray-900`}
+          className={`${show ? 'flex pb-4 px-1' : 'hidden'} ${
+            router.pathname === '/search' ? 'hidden' : 'md:flex'
+          } md:w-80 items-center ml-auto bg-gray-900`}
         >
           <Input.Search
             placeholder="输入关键词"
+            value={value}
+            allowClear
+            onChange={(e) => setValue(e.target.value)}
             onSearch={onSearch}
             enterButton
           />
