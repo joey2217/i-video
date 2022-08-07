@@ -42,7 +42,7 @@ const BannerSlide: React.FC<Banner> = (banner) => (
     <Image
       src={banner.banner}
       width={1920}
-      height={670}
+      height={720}
       layout="responsive"
       alt={banner.name}
       priority

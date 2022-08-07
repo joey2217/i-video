@@ -1,6 +1,12 @@
 // 动漫
 export const HOT_CARTOON = [
   {
+    id: 23775,
+    name: '雷神4：爱与雷霆',
+    banner: '/23775.jpg',
+    intro: 'Thor: Love and Thunder',
+  },
+  {
     id: 22700,
     name: '海贼王',
     banner: '/22700.webp',
