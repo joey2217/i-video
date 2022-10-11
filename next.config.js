@@ -6,6 +6,7 @@ const nextConfig = {
     domains: [
       'image.sekahui.cn',
       'image.ijycnd.com',
+      'image.iapijy.com',
     ],
   },
 }
