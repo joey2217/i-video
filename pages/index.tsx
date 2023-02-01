@@ -7,7 +7,7 @@ import BannerSwiper from '../components/BannerSwiper'
 import VideoList from '../components/VideoList'
 import type { LatestData } from '../types'
 import { fetchLatestList } from '../utils/api'
-import { HOT_CARTOON } from '../utils/constants'
+import { HOT } from '../utils/constants'
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false)
@@ -27,7 +27,7 @@ const Home: NextPage = () => {
       <Head>
         <title>首页 - 视频资源网</title>
       </Head>
-      <BannerSwiper bannerData={HOT_CARTOON} />
+      <BannerSwiper bannerData={HOT} />
       <div className="page">
         <Skeleton loading={loading} active>
           {latestData ? (
@@ -38,7 +38,9 @@ const Home: NextPage = () => {
                 }}
                 title={
                   <div className="flex items-baseline">
-                    <div className="text-lg font-bold">最新电影</div>
+                    <Link href="/movie">
+                      <a className="text-lg font-bold mr-4">电影</a>
+                    </Link>
                     <Space
                       split={<Divider type="vertical" />}
                       wrap
@@ -89,11 +91,6 @@ const Home: NextPage = () => {
                           动画片
                         </a>
                       </Link>
-                      <Link href="/channel?channel=2">
-                        <a className="text-white hover:text-green-400">
-                          更多 &gt;
-                        </a>
-                      </Link>
                     </Space>
                   </div>
                 }
@@ -112,7 +109,10 @@ const Home: NextPage = () => {
                 }}
                 title={
                   <div className="flex items-baseline">
-                    <div className="text-lg font-bold">最新电视剧</div>
+                    <Link href="/tv">
+                      <a className="text-lg font-bold mr-4">电视剧</a>
+                    </Link>
+
                     <Space
                       split={<Divider type="vertical" />}
                       wrap
@@ -149,11 +149,6 @@ const Home: NextPage = () => {
                           马泰剧
                         </a>
                       </Link>
-                      <Link href="/channel?channel=1">
-                        <a className="text-white hover:text-green-400">
-                          更多 &gt;
-                        </a>
-                      </Link>
                     </Space>
                   </div>
                 }
@@ -172,18 +167,9 @@ const Home: NextPage = () => {
                 }}
                 title={
                   <div className="flex items-baseline">
-                    <div className="text-lg font-bold">最新综艺</div>
-                    <Space
-                      split={<Divider type="vertical" />}
-                      wrap
-                      className="text-xs ml-1 md:ml-2 lg:ml-4"
-                    >
-                      <Link href="/channel?channel=27">
-                        <a className="text-white hover:text-green-400">
-                          更多 &gt;
-                        </a>
-                      </Link>
-                    </Space>
+                    <Link href="/variety">
+                      <a className="text-lg font-bold mr-4">综艺</a>
+                    </Link>
                   </div>
                 }
                 bordered={false}
@@ -201,7 +187,9 @@ const Home: NextPage = () => {
                 }}
                 title={
                   <div className="flex items-baseline">
-                    <div className="text-lg font-bold">最新动漫</div>
+                    <Link href="/cartoon">
+                      <a className="text-lg font-bold mr-4">动漫</a>
+                    </Link>
                     <Space
                       split={<Divider type="vertical" />}
                       wrap
@@ -215,11 +203,6 @@ const Home: NextPage = () => {
                       </Link>
                       <Link href="/channel?channel=26">
                         <a className="text-white hover:text-green-400">欧美</a>
-                      </Link>
-                      <Link href="/channel?channel=17">
-                        <a className="text-white hover:text-green-400">
-                          更多 &gt;
-                        </a>
                       </Link>
                     </Space>
                   </div>

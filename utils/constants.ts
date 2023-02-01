@@ -1,19 +1,31 @@
-// 动漫
-export const HOT_CARTOON = [
+// 热门
+export const HOT = [
   {
-    id: 23775,
-    name: '雷神4：爱与雷霆',
-    banner: '/23775.jpg',
-    intro: 'Thor: Love and Thunder',
+    id: 40626,
+    name: '流浪地球2',
+    banner: '/40626.png',
+    intro: '《流浪地球》前传',
   },
   {
-    id: 22700,
+    id: 40626,
+    name: '满江红',
+    banner: '/40626.jpg',
+    intro: '精忠报国',
+  },
+  {
+    id: 40396,
+    name: '狂飙',
+    banner: '/40396.jpg',
+    intro: '[39集全]张译张颂文黑白较量',
+  },
+  {
+    id: 32742,
     name: '海贼王',
     banner: '/22700.webp',
     intro: '草帽路飞伟大冒险',
   },
   {
-    id: 15967,
+    id: 33249,
     name: '间谍过家家',
     banner: '/15967.webp',
     intro: '非凡一家绝密生活',

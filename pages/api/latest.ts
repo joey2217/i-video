@@ -9,7 +9,7 @@ function fetchList(type: string | number) {
     method: 'GET',
     params: {
       ac: 'detail',
-      tid: type,
+      t: type,
       limit: 8,
     },
   }).then((res) => {
@@ -22,8 +22,8 @@ export default async function handler(
   res: NextApiResponse
 ) {
   try {
-    //1  电视剧 2 电影 17 动漫 27 综艺
-    const fetch = [fetchList(2), fetchList(1), fetchList(4), fetchList(3)]
+    //1 = 电视剧 2 =电影 17 =动漫 27 =综艺
+    const fetch = [fetchList(20), fetchList(12), fetchList(24), fetchList(27)]
     const [tvList, movieList, cartoonList, varietyList] = await Promise.all(
       fetch
     )

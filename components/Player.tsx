@@ -1,4 +1,4 @@
-import React, { memo, useEffect, useRef, useState } from 'react'
+import React, { memo, useEffect, useRef } from 'react'
 import Hls from 'hls.js'
 
 interface Props {
@@ -10,11 +10,9 @@ let hls: Hls
 
 const HlsPlayer: React.FC<Props> = ({ liveUrl, playUrl }) => {
   const videoEl = useRef<HTMLVideoElement>(null)
-  const [error, setError] = useState('')
   useEffect(() => {
     try {
       const video = videoEl.current
-      setError('')
       if (hls != null) {
         hls.destroy()
       }
@@ -40,7 +38,6 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, playUrl }) => {
               const errorDetails = data.details
               const errorFatal = data.fatal
               console.error('error', errorType, errorDetails, errorFatal)
-              setError(errorType)
             })
             // hls.on(Hls.Events.MANIFEST_PARSED, function () {
             //   video.play();
@@ -58,16 +55,6 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, playUrl }) => {
     }
   }, [liveUrl])
 
-  if (error) {
-    if (playUrl) {
-      return (
-        <a href={playUrl} target="_blank" rel="noopener noreferrer">
-          跳转播放器
-        </a>
-      )
-    }
-    return <div className="h-full w-full text-center text-3xl">{error}</div>
-  }
   return (
     <video ref={videoEl} controls autoPlay className="h-full w-full"></video>
   )

@@ -4,7 +4,7 @@ import axios from 'axios'
 import { BASE_URL } from './data'
 
 // 动漫
-const HOT_CARTOON = [22700]
+const HOT_CARTOON = [32742]
 
 const HOT = [HOT_CARTOON[0]]
 

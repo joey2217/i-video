@@ -13,7 +13,7 @@ export default function handler(
     method: 'GET',
     params: {
       ac: 'detail',
-      tid: type,
+      t: type,
       pg: page,
       wd: keyword,
       limit: size,
