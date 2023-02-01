@@ -9,7 +9,7 @@ function fetchList(type: string | number) {
     method: 'GET',
     params: {
       ac: 'detail',
-      t: type,
+      tid: type,
       limit: 8,
     },
   }).then((res) => {
@@ -23,7 +23,7 @@ export default async function handler(
 ) {
   try {
     //1  电视剧 2 电影 17 动漫 27 综艺
-    const fetch = [fetchList(1), fetchList(2), fetchList(17), fetchList(27)]
+    const fetch = [fetchList(2), fetchList(1), fetchList(4), fetchList(3)]
     const [tvList, movieList, cartoonList, varietyList] = await Promise.all(
       fetch
     )

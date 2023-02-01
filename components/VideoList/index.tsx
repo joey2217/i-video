@@ -43,7 +43,7 @@ const VideoList: React.FC<Props> = ({
             onChange={onPageChange}
             total={total}
             showSizeChanger={false}
-            showTotal={(total) => `共 ${total} 资源`}
+            showTotal={(total) => `共${total}`}
           />
         </div>
       )}

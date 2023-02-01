@@ -7,6 +7,9 @@ const nextConfig = {
       'image.sekahui.cn',
       'image.ijycnd.com',
       'image.iapijy.com',
+      'pan.dysmz.top',
+      'pan1.dysmz.top',
+      'pic.wujinpp.com',
     ],
   },
 }

@@ -80,7 +80,7 @@ const Search: React.FC<{ q: string }> = ({ q = '' }) => {
             pageSize: 10,
             onChange: setPage,
             showSizeChanger: false,
-            showTotal: (total) => `共 ${total} 资源`,
+            showTotal: (total) => `共${total}`,
           }}
           renderItem={(item) => (
             <List.Item key={item.vod_id}>

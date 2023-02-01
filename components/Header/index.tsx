@@ -9,6 +9,7 @@ const Header: React.FC = () => {
   const [show, setShow] = useState(false)
   const [value, setValue] = useState('')
   const onSearch = (val: string) => {
+    console.log(val)
     setValue('')
     setShow(false)
     router.push(`/search?q=${val}`)
@@ -80,8 +81,17 @@ const Header: React.FC = () => {
             <ActiveLink href="/">
               <a className="link">首页</a>
             </ActiveLink>
-            <ActiveLink href="/channel?channel=2">
-              <a className="link">频道</a>
+            <ActiveLink href="/movie">
+              <a className="link">电影</a>
+            </ActiveLink>
+            <ActiveLink href="/tv">
+              <a className="link">电视剧</a>
+            </ActiveLink>
+            <ActiveLink href="/cartoon">
+              <a className="link">动漫</a>
+            </ActiveLink>
+            <ActiveLink href="/variety">
+              <a className="link">综艺</a>
             </ActiveLink>
             <ActiveLink href="/search">
               <a className="link">搜索</a>

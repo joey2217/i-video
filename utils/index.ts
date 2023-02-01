@@ -56,3 +56,23 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
 //     }
 //   }
 // }
+
+const LOCAL_HISTORY = 'local_history'
+export const MAX_HISTORY_NUM = 120
+
+export function getLocalHistory(){
+  const localData = localStorage.getItem(LOCAL_HISTORY)
+  if (localData) {
+    try {
+      return JSON.parse(localData)
+    } catch (error) {
+      console.error(error)
+      return []
+    }
+  }
+  return []
+}
+
+export function setLocalHistory(data: any){
+  localStorage.setItem(LOCAL_HISTORY,JSON.stringify(data))
+}
