@@ -7,9 +7,9 @@ export const HOT = [
     intro: '《流浪地球》前传',
   },
   {
-    id: 40626,
+    id: 40650,
     name: '满江红',
-    banner: '/40626.jpg',
+    banner: '/40650.jpg',
     intro: '精忠报国',
   },
   {
