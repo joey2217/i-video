@@ -34,103 +34,103 @@ export const HOT = [
 
 export const CHANNEL_DATA = [
   {
-    title: '全部',
+    label: '全部',
     value: '',
   },
   {
-    title: '电影',
+    label: '电影',
     value: '2',
     children: [
       {
-        title: '剧情片',
+        label: '剧情片',
         value: '14',
       },
       {
-        title: '动作片',
+        label: '动作片',
         value: '9',
       },
       {
-        title: '科幻片',
+        label: '科幻片',
         value: '12',
       },
       {
-        title: '喜剧片',
+        label: '喜剧片',
         value: '11',
       },
       {
-        title: '战争片',
+        label: '战争片',
         value: '15',
       },
       {
-        title: '恐怖片',
+        label: '恐怖片',
         value: '13',
       },
       {
-        title: '爱情片',
+        label: '爱情片',
         value: '10',
       },
       {
-        title: '纪录片',
+        label: '纪录片',
         value: '16',
       },
       {
-        title: '动画片',
+        label: '动画片',
         value: '23',
       },
     ],
   },
   {
-    title: '电视剧',
+    label: '电视剧',
     value: '1',
     children: [
       {
-        title: '内地剧',
+        label: '内地剧',
         value: '20',
       },
       {
-        title: '香港剧',
+        label: '香港剧',
         value: '4',
       },
       {
-        title: '台湾剧',
+        label: '台湾剧',
         value: '28',
       },
       {
-        title: '欧美剧',
+        label: '欧美剧',
         value: '3',
       },
       {
-        title: '韩剧',
+        label: '韩剧',
         value: '5',
       },
       {
-        title: '日剧',
+        label: '日剧',
         value: '6',
       },
       {
-        title: '马泰剧',
+        label: '马泰剧',
         value: '7',
       },
     ],
   },
   {
-    title: '综艺',
+    label: '综艺',
     value: '27',
   },
   {
-    title: '动漫',
+    label: '动漫',
     value: '17',
     children: [
       {
-        title: '国漫',
+        label: '国漫',
         value: '24',
       },
       {
-        title: '日漫',
+        label: '日漫',
         value: '25',
       },
       {
-        title: '欧美',
+        label: '欧美',
         value: '26',
       },
     ],
@@ -164,3 +164,89 @@ export const DEFALUT_VIDEO = {
   vod_content:'',
   vod_play_url: '',
 }
+
+
+export const MOVIE_TYPES = [
+  {
+    label: '剧情片',
+    value: '14',
+  },
+  {
+    label: '动作片',
+    value: '9',
+  },
+  {
+    label: '科幻片',
+    value: '12',
+  },
+  {
+    label: '喜剧片',
+    value: '11',
+  },
+  {
+    label: '战争片',
+    value: '15',
+  },
+  {
+    label: '恐怖片',
+    value: '13',
+  },
+  {
+    label: '爱情片',
+    value: '10',
+  },
+  {
+    label: '纪录片',
+    value: '16',
+  },
+  {
+    label: '动画片',
+    value: '23',
+  },
+]
+
+export const TV_TYPES = [
+  {
+    label: '内地剧',
+    value: '20',
+  },
+  {
+    label: '香港剧',
+    value: '4',
+  },
+  {
+    label: '台湾剧',
+    value: '28',
+  },
+  {
+    label: '欧美剧',
+    value: '3',
+  },
+  {
+    label: '韩剧',
+    value: '5',
+  },
+  {
+    label: '日剧',
+    value: '6',
+  },
+  {
+    label: '马泰剧',
+    value: '7',
+  },
+]
+
+export const CARTOON_TYPES = [
+  {
+    label: '国漫',
+    value: '24',
+  },
+  {
+    label: '日漫',
+    value: '25',
+  },
+  {
+    label: '欧美',
+    value: '26',
+  },
+]

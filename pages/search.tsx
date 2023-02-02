@@ -2,7 +2,7 @@ import React, { memo, useEffect, useState } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import type { GetServerSideProps } from 'next'
-import { Input, List, Skeleton, TreeSelect } from 'antd'
+import { Input, List, Skeleton, TreeSelect, Cascader } from 'antd'
 import { fetchList } from '../utils/api'
 import type { Video } from '../types'
 import { CHANNEL_DATA, DEFALUT_VIDEO } from '../utils/constants'
@@ -53,13 +53,14 @@ const Search: React.FC<{ q: string }> = ({ q = '' }) => {
       <div className="text-center">
         <Input.Search
           addonBefore={
-            <TreeSelect
-              className="w-32"
-              value={channel}
-              treeData={CHANNEL_DATA}
-              placeholder="Please select"
-              treeDefaultExpandAll
-              onChange={setChannel}
+            <Cascader
+              className="w-36"
+              defaultValue={['']}
+              options={CHANNEL_DATA}
+              placeholder="分类"
+              onChange={(val) =>
+                val ? setChannel(val[val.length - 1] as string) : ''
+              }
             />
           }
           className="w-full md:w-1/2 lg:1/3"

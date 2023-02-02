@@ -1,45 +1,17 @@
 import React, { memo, useEffect, useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { Radio } from 'antd'
 import { Video } from '../types'
 import { fetchList } from '../utils/api'
+import { TV_TYPES as TYPES } from '../utils/constants'
 import VideoList from '../components/VideoList'
-import { Radio } from 'antd'
-
-const TYPES = [
-  {
-    label: '内地剧',
-    value: '20',
-  },
-  {
-    label: '香港剧',
-    value: '4',
-  },
-  {
-    label: '台湾剧',
-    value: '28',
-  },
-  {
-    label: '欧美剧',
-    value: '3',
-  },
-  {
-    label: '韩剧',
-    value: '5',
-  },
-  {
-    label: '日剧',
-    value: '6',
-  },
-  {
-    label: '马泰剧',
-    value: '7',
-  },
-]
 
 const TvPage: React.FC = () => {
+  const { query } = useRouter()
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
-  const [type, setType] = useState(TYPES[0].value)
+  const [type, setType] = useState(query.t || TYPES[0].value)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
 

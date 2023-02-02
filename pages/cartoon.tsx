@@ -1,31 +1,19 @@
 import React, { memo, useEffect, useState } from 'react'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
+import { Radio } from 'antd'
 import { Video } from '../types'
 import { fetchList } from '../utils/api'
+import { CARTOON_TYPES as TYPES } from '../utils/constants'
 import VideoList from '../components/VideoList'
-import { Radio } from 'antd'
-
-const TYPES = [
-  {
-    label: '国漫',
-    value: '24',
-  },
-  {
-    label: '日漫',
-    value: '25',
-  },
-  {
-    label: '欧美',
-    value: '26',
-  },
-]
 
 const Cartoon: React.FC = () => {
+  const { query } = useRouter()
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
-  const [type, setType] = useState(TYPES[0].value)
+  const [type, setType] = useState(query.t || TYPES[0].value)
 
   useEffect(() => {
     setLoading(true)

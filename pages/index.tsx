@@ -7,7 +7,7 @@ import BannerSwiper from '../components/BannerSwiper'
 import VideoList from '../components/VideoList'
 import type { LatestData } from '../types'
 import { fetchLatestList } from '../utils/api'
-import { HOT } from '../utils/constants'
+import { HOT, MOVIE_TYPES, TV_TYPES, CARTOON_TYPES } from '../utils/constants'
 
 const Home: NextPage = () => {
   const [loading, setLoading] = useState(false)
@@ -46,51 +46,13 @@ const Home: NextPage = () => {
                       wrap
                       className="text-xs ml-1 md:ml-2 lg:ml-4"
                     >
-                      <Link href="/channel?channel=14">
-                        <a className="text-white hover:text-green-400">
-                          剧情片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=9">
-                        <a className="text-white hover:text-green-400">
-                          动作片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=12">
-                        <a className="text-white hover:text-green-400">
-                          科幻片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=11">
-                        <a className="text-white hover:text-green-400">
-                          喜剧片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=15">
-                        <a className="text-white hover:text-green-400">
-                          战争片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=13">
-                        <a className="text-white hover:text-green-400">
-                          恐怖片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=10">
-                        <a className="text-white hover:text-green-400">
-                          爱情片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=16">
-                        <a className="text-white hover:text-green-400">
-                          纪录片
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=23">
-                        <a className="text-white hover:text-green-400">
-                          动画片
-                        </a>
-                      </Link>
+                      {MOVIE_TYPES.map((type) => (
+                        <Link key={type.value} href={`/movie?t=${type.value}`}>
+                          <a className="text-white hover:text-green-400">
+                            {type.label}
+                          </a>
+                        </Link>
+                      ))}
                     </Space>
                   </div>
                 }
@@ -118,37 +80,13 @@ const Home: NextPage = () => {
                       wrap
                       className="text-xs ml-1 md:ml-2 lg:ml-4"
                     >
-                      <Link href="/channel?channel=20">
-                        <a className="text-white hover:text-green-400">
-                          内地剧
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=4">
-                        <a className="text-white hover:text-green-400">
-                          香港剧
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=28">
-                        <a className="text-white hover:text-green-400">
-                          台湾剧
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=3">
-                        <a className="text-white hover:text-green-400">
-                          欧美剧
-                        </a>
-                      </Link>
-                      <Link href="/channel?channel=5">
-                        <a className="text-white hover:text-green-400">韩剧</a>
-                      </Link>
-                      <Link href="/channel?channel=6">
-                        <a className="text-white hover:text-green-400">日剧</a>
-                      </Link>
-                      <Link href="/channel?channel=7">
-                        <a className="text-white hover:text-green-400">
-                          马泰剧
-                        </a>
-                      </Link>
+                      {TV_TYPES.map((type) => (
+                        <Link key={type.value} href={`/tv?t=${type.value}`}>
+                          <a className="text-white hover:text-green-400">
+                            {type.label}
+                          </a>
+                        </Link>
+                      ))}
                     </Space>
                   </div>
                 }
@@ -195,15 +133,16 @@ const Home: NextPage = () => {
                       wrap
                       className="text-xs ml-1 md:ml-2 lg:ml-4"
                     >
-                      <Link href="/channel?channel=24">
-                        <a className="text-white hover:text-green-400">国漫</a>
-                      </Link>
-                      <Link href="/channel?channel=25">
-                        <a className="text-white hover:text-green-400">日漫</a>
-                      </Link>
-                      <Link href="/channel?channel=26">
-                        <a className="text-white hover:text-green-400">欧美</a>
-                      </Link>
+                      {CARTOON_TYPES.map((type) => (
+                        <Link
+                          key={type.value}
+                          href={`/cartoon?t=${type.value}`}
+                        >
+                          <a className="text-white hover:text-green-400">
+                            {type.label}
+                          </a>
+                        </Link>
+                      ))}
                     </Space>
                   </div>
                 }
