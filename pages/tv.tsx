@@ -11,7 +11,7 @@ const TvPage: React.FC = () => {
   const { query } = useRouter()
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
-  const [type, setType] = useState(query.t || TYPES[0].value)
+  const [type, setType] = useState(query.t as string || TYPES[0].value)
   const [page, setPage] = useState(1)
   const [loading, setLoading] = useState(false)
 
