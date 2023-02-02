@@ -46,9 +46,10 @@ const Detail: React.FC = () => {
     <section className="lg:flex" id="detail">
       <Head>
         <title>
-          {`${video?.vod_name} - ${
-            liveList.length > 0 ? liveList[playIndex].name : ''
-          } - `}
+          {video &&
+            `${video.vod_name} - ${
+              liveList.length > 0 ? liveList[playIndex].name : ''
+            } - `}
           视频资源网
         </title>
       </Head>

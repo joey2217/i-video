@@ -54,12 +54,15 @@ const Search: React.FC<{ q: string }> = ({ q = '' }) => {
         <Input.Search
           addonBefore={
             <Cascader
+              allowClear={false}
               className="w-36"
               defaultValue={['']}
               options={CHANNEL_DATA}
               placeholder="分类"
               onChange={(val) =>
-                val ? setChannel(val[val.length - 1] as string) : ''
+                setChannel(
+                  val ? (val[val.length - 1] as string) : ''
+                )
               }
             />
           }
