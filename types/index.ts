@@ -63,3 +63,10 @@ export interface Banner {
   banner: string
   intro: string
 }
+
+export interface History extends Video {
+  seek: number
+  episode: number
+  episodeName: string
+  date: number
+}

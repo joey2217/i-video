@@ -4,11 +4,14 @@ import Hls from 'hls.js'
 interface Props {
   liveUrl?: string
   playUrl?: string
+  onEnd?: () => void
+  onTimeUpdate?: (seek: number) => void
+  seek?: number
 }
 
 let hls: Hls
 
-const HlsPlayer: React.FC<Props> = ({ liveUrl, playUrl }) => {
+const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
   const videoEl = useRef<HTMLVideoElement>(null)
   useEffect(() => {
     try {
@@ -54,6 +57,27 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, playUrl }) => {
       console.error(error)
     }
   }, [liveUrl])
+
+  useEffect(() => {
+    const video = videoEl.current
+    if (video) {
+      video.addEventListener('timeupdate', function () {
+        if (onTimeUpdate) {
+          onTimeUpdate(video.currentTime)
+        }
+      })
+      video.addEventListener('play', function () {
+        if (seek != null) {
+          video.currentTime = seek
+        }
+      })
+      video.addEventListener('ended', function () {
+        if (onEnd) {
+          onEnd()
+        }
+      })
+    }
+  }, [onEnd, onTimeUpdate, seek])
 
   return (
     <video ref={videoEl} controls autoPlay className="h-full w-full"></video>

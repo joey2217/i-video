@@ -20,7 +20,7 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
   const blocks = vod_play_url.split(separator).map((item: string) =>
     item.split('#').map((part: string) => {
       const [name, url] = part.split('$')
-      return { name: parseName(name), url }
+      return { name, url }
     })
   )
   const [option1, option2] = options

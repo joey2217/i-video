@@ -1,20 +1,29 @@
-import React, { memo, useContext, useEffect, useState } from 'react'
+import React, {
+  memo,
+  useCallback,
+  useContext,
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
 import { useRouter } from 'next/router'
 import { Button, Tabs } from 'antd'
 import Head from 'next/head'
-
 import { fetchVideo } from '../../utils/api'
 import type { Video, PlayItem } from '../../types'
 import { parseVideoPlayUrl } from '../../utils'
 import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
 import FavoritesContext from '../../context/FavoritesContext'
-import Link from 'next/link'
+import { useHistory } from '../../context/HistoryContext'
 
 const { TabPane } = Tabs
 
+let timer: string | number | NodeJS.Timeout | undefined
+
 const Detail: React.FC = () => {
   const router = useRouter()
+  const { addHistory, histories } = useHistory()
   const { id } = router.query
 
   const [video, setVideo] = useState<Video>()
@@ -22,10 +31,22 @@ const Detail: React.FC = () => {
   const [liveList, setLiveList] = useState<PlayItem[]>([])
   const [playList, setPlayList] = useState<PlayItem[]>([])
   const [playIndex, setPlayIndex] = useState(0)
+  const [seek, setSeek] = useState<number | undefined>(undefined)
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext)
 
-  const included = video ? favorites.includes(video?.vod_id) : false
+  const included = useMemo(
+    () => (video ? favorites.includes(video?.vod_id) : false),
+    [favorites, video]
+  )
+
+  const episodeName = useMemo(() => {
+    if (liveList.length > 0) {
+      return liveList[playIndex].name
+    } else {
+      return ''
+    }
+  }, [liveList, playIndex])
 
   useEffect(() => {
     if (id) {
@@ -38,18 +59,78 @@ const Detail: React.FC = () => {
         )
         setLiveList(m3u8List)
         setPlayList(yunList)
-        setPlayIndex(0)
       })
     }
   }, [id])
+
+  useEffect(() => {
+    if (video) {
+      const his = histories.find((h) => h.vod_id === video.vod_id)
+      if (his) {
+        setPlayIndex(his.episode)
+        setSeek(his.seek)
+      } else {
+        setPlayIndex(0)
+        addHistory({
+          ...video,
+          seek: 0,
+          episode: 0,
+          episodeName: liveList[0].name,
+          date: Date.now(),
+        })
+      }
+    }
+    return () => {
+      clearTimeout(timer)
+    }
+  }, [addHistory, histories, liveList, video])
+
+  const goNext = useCallback(() => {
+    if (liveList.length > 0 && playIndex + 1 < liveList.length) {
+      setSeek(undefined)
+      setPlayIndex(playIndex + 1)
+    }
+  }, [liveList.length, playIndex])
+
+  const onTimeUpdate = useCallback(
+    (num: number) => {
+      clearTimeout(timer)
+      setTimeout(() => {
+        if (video) {
+          addHistory({
+            ...video,
+            seek: num,
+            episode: playIndex,
+            episodeName,
+            date: Date.now(),
+          })
+        }
+      }, 1000)
+    },
+    [addHistory, episodeName, playIndex, video]
+  )
+
+  const onPlay = useCallback(
+    (index: number) => {
+      setPlayIndex(index)
+      if (video) {
+        addHistory({
+          ...video,
+          seek: 0,
+          episode: index,
+          episodeName,
+          date: Date.now(),
+        })
+      }
+    },
+    [addHistory, episodeName, video]
+  )
+
   return (
     <section className="lg:flex" id="detail">
       <Head>
         <title>
-          {video &&
-            `${video.vod_name} - ${
-              liveList.length > 0 ? liveList[playIndex].name : ''
-            } - `}
+          {video && `${video.vod_name} - ${episodeName} - `}
           视频资源网
         </title>
       </Head>
@@ -57,6 +138,9 @@ const Detail: React.FC = () => {
         <Player
           liveUrl={liveList.length > 0 ? liveList[playIndex].url : undefined}
           playUrl={playList.length > 0 ? playList[playIndex].url : undefined}
+          seek={seek}
+          onEnd={goNext}
+          onTimeUpdate={onTimeUpdate}
         />
       </div>
       <div className="hidden lg:flex items-center">
@@ -122,7 +206,7 @@ const Detail: React.FC = () => {
                   key={v.url}
                   size="small"
                   type={playIndex === index ? 'primary' : 'default'}
-                  onClick={() => setPlayIndex(index)}
+                  onClick={() => onPlay(index)}
                 >
                   {v.name}
                 </Button>
