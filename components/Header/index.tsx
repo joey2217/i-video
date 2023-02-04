@@ -99,12 +99,15 @@ const Header: React.FC = () => {
             <ActiveLink href="/favorites">
               <a className="link">收藏</a>
             </ActiveLink>
+            <ActiveLink href="/record">
+              <a className="link">看过</a>
+            </ActiveLink>
           </nav>
         </div>
         <div
           className={`${show ? 'flex pb-4 px-1' : 'hidden'} ${
             router.pathname === '/search' ? 'hidden' : 'md:flex'
-          } md:w-80 items-center ml-auto bg-gray-900`}
+          } md:w-56 lg:w-80 items-center ml-auto bg-gray-900`}
         >
           <Input.Search
             placeholder="输入关键词"

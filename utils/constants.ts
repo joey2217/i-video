@@ -1,3 +1,5 @@
+import type { Video } from '../types'
+
 // 热门
 export const HOT = [
   {
@@ -137,12 +139,13 @@ export const CHANNEL_DATA = [
   },
 ]
 
-export const DEFALUT_VIDEO = {
+export const DEFALUT_VIDEO: Video = {
   vod_id: 0,
   vod_name: 'loading',
   type_id: 23,
   type_name: 'loading',
   vod_time: '',
+  vod_duration: '',
   vod_play_from: '',
   type_id_1: 0,
   vod_sub: 'loading',
@@ -161,10 +164,9 @@ export const DEFALUT_VIDEO = {
   vod_score: '',
   vod_douban_id: 0,
   vod_douban_score: '',
-  vod_content:'',
+  vod_content: '',
   vod_play_url: '',
 }
-
 
 export const MOVIE_TYPES = [
   {

@@ -10,7 +10,7 @@ import { useRouter } from 'next/router'
 import { Button, Tabs } from 'antd'
 import Head from 'next/head'
 import { fetchVideo } from '../../utils/api'
-import type { Video, PlayItem } from '../../types'
+import type { Video, PlayItem, IHistory } from '../../types'
 import { parseVideoPlayUrl } from '../../utils'
 import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
@@ -19,7 +19,7 @@ import { useHistory } from '../../context/HistoryContext'
 
 const { TabPane } = Tabs
 
-let timer: string | number | NodeJS.Timeout | undefined
+const durationReg = /(\d+).+/
 
 const Detail: React.FC = () => {
   const router = useRouter()
@@ -31,6 +31,7 @@ const Detail: React.FC = () => {
   const [liveList, setLiveList] = useState<PlayItem[]>([])
   const [playList, setPlayList] = useState<PlayItem[]>([])
   const [playIndex, setPlayIndex] = useState(0)
+  const [currentHistory, setCurrentHistory] = useState<IHistory | null>(null)
   const [seek, setSeek] = useState<number | undefined>(undefined)
   const { favorites, addFavorite, removeFavorite } =
     useContext(FavoritesContext)
@@ -48,6 +49,14 @@ const Detail: React.FC = () => {
     }
   }, [liveList, playIndex])
 
+  const videoSeconds = useMemo(() => {
+    if (video && video.vod_duration) {
+      const m = video.vod_duration.replace(durationReg, (m, p1) => p1)
+      return Number(m) * 60
+    }
+    return 0
+  }, [video])
+
   useEffect(() => {
     if (id) {
       fetchVideo(id as string).then((data) => {
@@ -64,26 +73,33 @@ const Detail: React.FC = () => {
   }, [id])
 
   useEffect(() => {
-    if (video) {
+    if (video && currentHistory == null) {
       const his = histories.find((h) => h.vod_id === video.vod_id)
       if (his) {
         setPlayIndex(his.episode)
         setSeek(his.seek)
+        console.log('seek', his.seek, video.vod_name, video.vod_id)
+        setCurrentHistory(his)
       } else {
         setPlayIndex(0)
-        addHistory({
-          ...video,
+        const newHistory = {
+          vod_id: video.vod_id,
+          vod_pic: video.vod_pic,
+          vod_name: video.vod_name,
+          vod_douban_score: video.vod_douban_score,
+          vod_time: video.vod_time,
+          vod_tag: video.vod_tag,
           seek: 0,
+          seekPercentage: '0%',
           episode: 0,
           episodeName: liveList[0].name,
           date: Date.now(),
-        })
+        } as IHistory
+        setCurrentHistory(newHistory)
+        addHistory(newHistory)
       }
     }
-    return () => {
-      clearTimeout(timer)
-    }
-  }, [addHistory, histories, liveList, video])
+  }, [addHistory, currentHistory, histories, liveList, video])
 
   const goNext = useCallback(() => {
     if (liveList.length > 0 && playIndex + 1 < liveList.length) {
@@ -94,20 +110,30 @@ const Detail: React.FC = () => {
 
   const onTimeUpdate = useCallback(
     (num: number) => {
-      clearTimeout(timer)
-      setTimeout(() => {
-        if (video) {
-          addHistory({
-            ...video,
-            seek: num,
-            episode: playIndex,
-            episodeName,
-            date: Date.now(),
-          })
+      console.log(num, video?.vod_name, 'onTimeUpdate')
+      setSeek(undefined)
+      if (video) {
+        let seekPercentage = ''
+        if (videoSeconds) {
+          const p = Math.round((num / videoSeconds) * 100)
+          seekPercentage = `${p}%`
         }
-      }, 1000)
+        addHistory({
+          vod_id: video.vod_id,
+          vod_pic: video.vod_pic,
+          vod_name: video.vod_name,
+          vod_douban_score: video.vod_douban_score,
+          vod_time: video.vod_time,
+          vod_tag: video.vod_tag,
+          seek: num,
+          seekPercentage,
+          episode: playIndex,
+          episodeName,
+          date: Date.now(),
+        } as IHistory)
+      }
     },
-    [addHistory, episodeName, playIndex, video]
+    [addHistory, episodeName, playIndex, video, videoSeconds]
   )
 
   const onPlay = useCallback(
@@ -115,12 +141,18 @@ const Detail: React.FC = () => {
       setPlayIndex(index)
       if (video) {
         addHistory({
-          ...video,
+          vod_id: video.vod_id,
+          vod_pic: video.vod_pic,
+          vod_name: video.vod_name,
+          vod_douban_score: video.vod_douban_score,
+          vod_time: video.vod_time,
+          vod_tag: video.vod_tag,
           seek: 0,
+          seekPercentage: '0%',
           episode: index,
           episodeName,
           date: Date.now(),
-        })
+        } as IHistory)
       }
     },
     [addHistory, episodeName, video]

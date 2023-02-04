@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import BannerSwiper from '../components/BannerSwiper'
 import VideoList from '../components/VideoList'
+import HistoryList from '../components/VideoList/HistoryList'
 import type { LatestData } from '../types'
 import { fetchLatestList } from '../utils/api'
 import { HOT, MOVIE_TYPES, TV_TYPES, CARTOON_TYPES } from '../utils/constants'
@@ -29,6 +30,22 @@ const Home: NextPage = () => {
       </Head>
       <BannerSwiper bannerData={HOT} />
       <div className="page">
+        <Card
+          bodyStyle={{
+            padding: '16px 0',
+          }}
+          title={
+            <div className="flex items-baseline">
+              <Link href="/record">
+                <a className="text-lg font-bold mr-4">看过</a>
+              </Link>
+            </div>
+          }
+          bordered={false}
+          className="mb-2 md:mb-4"
+        >
+          <HistoryList count={8} />
+        </Card>
         <Skeleton loading={loading} active>
           {latestData ? (
             <div>

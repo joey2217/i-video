@@ -60,7 +60,7 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
 const LOCAL_HISTORY = 'local_history'
 export const MAX_HISTORY_NUM = 120
 
-export function getLocalHistory(){
+export function getLocalHistory() {
   const localData = localStorage.getItem(LOCAL_HISTORY)
   if (localData) {
     try {
@@ -73,6 +73,65 @@ export function getLocalHistory(){
   return []
 }
 
-export function setLocalHistory(data: any){
-  localStorage.setItem(LOCAL_HISTORY,JSON.stringify(data))
+export function setLocalHistory(data: any) {
+  localStorage.setItem(LOCAL_HISTORY, JSON.stringify(data))
+}
+
+const now = Date.now
+
+export function throttle(
+  func: Function,
+  wait: number,
+  options: { leading?: boolean; trailing?: boolean } = {}
+) {
+  let timeout: string | number | NodeJS.Timeout | null | undefined
+  let context: null = null
+  let args: IArguments | null = null
+  let result: any
+  let previous = 0
+  if (!options) options = {}
+
+  let later = function () {
+    previous = options.leading === false ? 0 : now()
+    timeout = null
+    result = func.apply(context, args)
+    if (!timeout) context = args = null
+  }
+
+  let throttled: any = function (this: any) {
+    let _now = now()
+    if (!previous && options.leading === false) previous = _now
+    let remaining = wait - (_now - previous)
+    context = this
+    args = arguments
+    if (remaining <= 0 || remaining > wait) {
+      if (timeout) {
+        clearTimeout(timeout)
+        timeout = null
+      }
+      previous = _now
+      result = func.apply(context, args)
+      if (!timeout) context = args = null
+    } else if (!timeout && options.trailing !== false) {
+      timeout = setTimeout(later, remaining)
+    }
+    return result
+  }
+
+  throttled.cancel = function () {
+    timeout && clearTimeout(timeout)
+    previous = 0
+    timeout = context = args = null
+  }
+
+  return throttled
+}
+
+export function seconds2Minute(s: number) {
+  let remain = s
+  const h = Math.floor(remain / 60 / 60)
+  remain = remain - h * 3600
+  const m = Math.floor(remain / 60)
+  const seconds = remain - m * 60
+  return `${h > 0 ? h + '小时' : ''}${m > 0 ? m + '分钟' : ''}${seconds}秒`
 }

@@ -7,6 +7,7 @@ import type { Video } from '../../types'
 interface Props {
   loading?: boolean
   count?: number
+  pageSize?: number
   videoList: Video[]
   pagination?: boolean
   total?: number
@@ -15,7 +16,8 @@ interface Props {
 
 const VideoList: React.FC<Props> = ({
   loading,
-  count = 24,
+  count = 20,
+  pageSize = 20,
   videoList,
   total = 0,
   pagination = true,
@@ -23,11 +25,7 @@ const VideoList: React.FC<Props> = ({
 }) => {
   return (
     <div>
-      <div
-        className={`grid grid-cols-2 md:grid-cols-4 ${
-          count === 8 ? 'lg:grid-cols-8' : 'lg:grid-cols-6 xl:grid-cols-8'
-        } gap-2`}
-      >
+      <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:grid-cols-8 gap-2">
         {loading
           ? Array.from({ length: count }).map((_, index) => (
               <LoadingCard key={index} />
@@ -40,6 +38,7 @@ const VideoList: React.FC<Props> = ({
         <div className="p-4 text-center">
           <Pagination
             size="small"
+            defaultPageSize = {pageSize}
             onChange={onPageChange}
             total={total}
             showSizeChanger={false}

@@ -28,6 +28,7 @@ export interface Video {
   vod_play_from: string
   type_id_1: number
   vod_sub: string
+  vod_duration: string
   vod_status: string
   vod_tag: string
   vod_pic: string
@@ -64,8 +65,9 @@ export interface Banner {
   intro: string
 }
 
-export interface History extends Video {
+export interface IHistory extends Video {
   seek: number
+  seekPercentage: string
   episode: number
   episodeName: string
   date: number

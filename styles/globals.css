@@ -41,7 +41,7 @@
 }
 #header .link.active {
   color: #fff;
-  @apply font-bold;
+  @apply font-bold text-green-400;
 }
 
 /* page */
