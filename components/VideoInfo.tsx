@@ -41,7 +41,7 @@ const VideoInfo: React.FC<Video> = (video) => {
       <div className="row">
         <div className="info-label">更新</div>
         <div className="info-content">
-          {video.vod_remarks}/共 {video.vod_total} 集
+          {video.vod_remarks}/共{video.vod_total}集
         </div>
       </div>
       <div className="row">

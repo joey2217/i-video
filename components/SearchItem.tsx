@@ -34,9 +34,15 @@ const SearchItem: React.FC<Video> = (video) => {
           {video.vod_douban_score && (
             <Tag color="gold">豆瓣:{video.vod_douban_score}</Tag>
           )}
-          <Tag color="lime">{video.vod_year}</Tag>
-          <Tag color="purple">{video.vod_area}</Tag>
-          <Tag color="cyan">{video.vod_lang}</Tag>
+          {
+            video.vod_year &&<Tag color="lime">{video.vod_year}</Tag>
+          }
+          {
+            video.vod_area && <Tag color="purple">{video.vod_area}</Tag>
+          }
+          {
+            video.vod_lang && <Tag color="cyan">{video.vod_lang}</Tag>
+          }
         </Space>
         {video.vod_tag && (
           <div className="row">

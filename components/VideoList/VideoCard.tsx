@@ -42,7 +42,7 @@ const VideoCard: React.FC<Props> = ({ video, isHistory = false }) => {
             </div>
           )}
           <div className="absolute bottom-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1">
-            {dayjs(video.vod_time).fromNow()}更新
+            {dayjs(video.vod_time).fromNow()}更新({video.vod_remarks})
           </div>
         </div>
         <div className="truncate text-base text-white text-opacity-90 p-1 hover:text-green-400">
