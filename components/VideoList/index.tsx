@@ -7,6 +7,7 @@ import type { Video } from '../../types'
 interface Props {
   loading?: boolean
   count?: number
+  page?: number
   pageSize?: number
   videoList: Video[]
   pagination?: boolean
@@ -17,6 +18,7 @@ interface Props {
 const VideoList: React.FC<Props> = ({
   loading,
   count = 20,
+  page = 1,
   pageSize = 20,
   videoList,
   total = 0,
@@ -38,7 +40,8 @@ const VideoList: React.FC<Props> = ({
         <div className="p-4 text-center">
           <Pagination
             size="small"
-            defaultPageSize = {pageSize}
+            current={page}
+            defaultPageSize={pageSize}
             onChange={onPageChange}
             total={total}
             showSizeChanger={false}

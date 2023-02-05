@@ -26,7 +26,7 @@ const Variety: React.FC = () => {
         })
         setLoading(false)
       })
-  }, [ page ])
+  }, [page])
 
   return (
     <section className="page">
@@ -37,6 +37,7 @@ const Variety: React.FC = () => {
         <VideoList
           loading={loading}
           videoList={videoList}
+          page={page}
           total={total}
           onPageChange={setPage}
         />

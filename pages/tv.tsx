@@ -44,13 +44,17 @@ const TvPage: React.FC = () => {
             optionType="button"
             options={TYPES}
             defaultValue={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => {
+              setType(e.target.value)
+              setPage(1)
+            }}
           />
         </div>
         <VideoList
           loading={loading}
           videoList={videoList}
           total={total}
+          page={page}
           onPageChange={setPage}
         />
       </div>

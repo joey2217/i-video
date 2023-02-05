@@ -12,7 +12,7 @@ const Movie: React.FC = () => {
   const [videoList, setVideoList] = useState<Video[]>([])
   const [total, setTotal] = useState(0)
   const [page, setPage] = useState(1)
-  const [type, setType] = useState(query.t as string || TYPES[0].value)
+  const [type, setType] = useState((query.t as string) || TYPES[0].value)
   const [loading, setLoading] = useState(false)
 
   useEffect(() => {
@@ -44,13 +44,17 @@ const Movie: React.FC = () => {
             optionType="button"
             options={TYPES}
             defaultValue={type}
-            onChange={(e) => setType(e.target.value)}
+            onChange={(e) => {
+              setType(e.target.value)
+              setPage(1)
+            }}
           />
         </div>
         <VideoList
           loading={loading}
           videoList={videoList}
           total={total}
+          page={page}
           onPageChange={setPage}
         />
       </div>
