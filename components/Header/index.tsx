@@ -26,7 +26,11 @@ const Header: React.FC = () => {
             </a>
           </Link>
 
-          <div className="flex-1 max-w-xs ml-4 flex md:hidden items-center justify-center">
+          <div
+            className={`${
+              router.pathname === '/search' ? 'hidden' : 'flex md:hidden'
+            } flex-1 max-w-xs ml-4 items-center justify-center`}
+          >
             <Input.Search
               placeholder="输入关键词"
               value={value}
@@ -65,8 +69,8 @@ const Header: React.FC = () => {
             </ActiveLink>
           </nav>
           <div
-            className={`hidden md:flex px-1 ${
-              router.pathname === '/search' ? 'hidden' : 'md:flex'
+            className={`px-1 hidden ${
+              router.pathname === '/search' ? '' : 'md:flex'
             } w-80 lg:w-[500px] items-center bg-gray-900`}
           >
             <Input.Search
