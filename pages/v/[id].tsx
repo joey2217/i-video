@@ -16,6 +16,7 @@ import Player from '../../components/Player'
 import VideoInfo from '../../components/VideoInfo'
 import FavoritesContext from '../../context/FavoritesContext'
 import { useHistory } from '../../context/HistoryContext'
+import PlayList from '../../components/PlayList'
 
 const { TabPane } = Tabs
 
@@ -235,8 +236,10 @@ const Detail: React.FC = () => {
                 {included ? '取消收藏' : '收藏'}
               </div>
             </div>
-            <div className="grid grid-cols-6 lg:grid-cols-4 gap-1">
-              {liveList.map((v, index) => (
+            <PlayList
+              dataSource={liveList}
+              currentIndex={playIndex}
+              renderItem={(v: PlayItem, index) => (
                 <Button
                   key={v.url}
                   size="small"
@@ -245,8 +248,8 @@ const Detail: React.FC = () => {
                 >
                   {v.name}
                 </Button>
-              ))}
-            </div>
+              )}
+            />
           </TabPane>
           <TabPane tab="云播(站外)" key="2">
             <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
@@ -282,8 +285,9 @@ const Detail: React.FC = () => {
                 {included ? '取消收藏' : '收藏'}
               </div>
             </div>
-            <div className="grid grid-cols-6 lg:grid-cols-4 gap-1">
-              {playList.map((v, index) => (
+            <PlayList
+              dataSource={playList}
+              renderItem={(v: PlayItem) => (
                 <Button
                   key={v.url}
                   size="small"
@@ -293,21 +297,9 @@ const Detail: React.FC = () => {
                   title="跳转"
                 >
                   {v.name}
-                  <svg
-                    className="ml-1"
-                    viewBox="0 0 1024 1024"
-                    version="1.1"
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="12"
-                    height="12"
-                    fill="currentColor"
-                  >
-                    <path d="M843.648 981.333333H89.6A46.08 46.08 0 0 1 42.666667 934.485333V183.253333a46.08 46.08 0 0 1 46.933333-46.890666H512c26.581333 0 46.933333 20.309333 46.933333 46.890666A46.08 46.08 0 0 1 512 230.101333H136.533333v657.493334h660.181334v-373.248a46.08 46.08 0 0 1 46.933333-46.848c26.624 0 46.933333 20.309333 46.933333 46.848v418.56c0 26.581333-20.309333 48.426667-46.933333 48.426666zM934.4 420.650667a46.08 46.08 0 0 1-46.933333-46.890667V136.362667h-237.781334a46.08 46.08 0 0 1-46.933333-46.848A46.08 46.08 0 0 1 649.685333 42.666667H934.4c26.581333 0 46.933333 20.309333 46.933333 46.848V373.76c0 25.002667-21.888 46.890667-46.933333 46.890667z"></path>
-                    <path d="M374.314667 695.509333c-12.501333 0-23.466667-4.693333-32.853334-14.08-18.773333-18.730667-18.773333-48.384 0-65.578666L879.658667 78.592c18.773333-18.773333 48.469333-18.773333 65.706666 0 18.773333 18.773333 18.773333 48.426667 0 65.578667L407.168 681.472c-9.386667 9.386667-20.309333 14.08-32.853333 14.08z"></path>
-                  </svg>
                 </Button>
-              ))}
-            </div>
+              )}
+            />
           </TabPane>
           <TabPane tab="简介" key="3">
             {video && <VideoInfo {...video} />}
