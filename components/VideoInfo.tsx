@@ -10,9 +10,9 @@ dayjs.extend(relativeTime)
 const VideoInfo: React.FC<Video> = (video) => {
   return (
     <div>
-      <div className="text-base font-bold  mb-1 lg:mb-2 truncate">
+      {/* <div className="text-base font-bold  mb-1 lg:mb-2 truncate">
         {video.vod_name}
-      </div>
+      </div> */}
       <div className="max-w-xs text-center mb-1 lg:mb-2">
         <Image
           src={video.vod_pic}
