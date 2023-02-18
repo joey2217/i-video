@@ -199,43 +199,41 @@ const Detail: React.FC = () => {
         id="info-tabs"
         className={`w-full ${
           show ? 'lg:w-96' : 'lg:w-0'
-        } transition-all ease-in-out delay-150 mt-4 lg:mt-0`}
+        } transition-all ease-in-out delay-150`}
       >
+        <div className="flex justify-between items-center flex-wrap p-2">
+          <span className="text-lg font-bold truncate">{video?.vod_name}</span>
+          <div
+            className="cursor-pointer flex items-center"
+            onClick={() => {
+              if (video) {
+                if (included) {
+                  removeFavorite(video.vod_id)
+                } else {
+                  addFavorite(video.vod_id)
+                }
+              }
+            }}
+          >
+            <svg
+              className={included ? 'fill-white' : ''}
+              width="16"
+              height="16"
+              viewBox="0 0 48 48"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z"
+                stroke="#fff"
+                strokeWidth="4"
+                strokeLinejoin="round"
+              />
+            </svg>
+            {included ? '取消收藏' : '收藏'}
+          </div>
+        </div>
         <Tabs defaultActiveKey="1" type="card" size="small">
           <TabPane tab="在线播放" key="1">
-            <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
-              <span className="text-lg font-bold truncate">
-                {video?.vod_name}
-              </span>
-              <div
-                className="cursor-pointer flex items-center"
-                onClick={() => {
-                  if (video) {
-                    if (included) {
-                      removeFavorite(video.vod_id)
-                    } else {
-                      addFavorite(video.vod_id)
-                    }
-                  }
-                }}
-              >
-                <svg
-                  className={included ? 'fill-white' : ''}
-                  width="16"
-                  height="16"
-                  viewBox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z"
-                    stroke="#fff"
-                    strokeWidth="4"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {included ? '取消收藏' : '收藏'}
-              </div>
-            </div>
             <PlayList
               dataSource={liveList}
               currentIndex={playIndex}
@@ -252,39 +250,6 @@ const Detail: React.FC = () => {
             />
           </TabPane>
           <TabPane tab="云播(站外)" key="2">
-            <div className="flex justify-between items-center flex-wrap mb-2 pr-2">
-              <span className="text-lg font-bold truncate">
-                {video?.vod_name}
-              </span>
-              <div
-                className="cursor-pointer flex items-center"
-                onClick={() => {
-                  if (video) {
-                    if (included) {
-                      removeFavorite(video.vod_id)
-                    } else {
-                      addFavorite(video.vod_id)
-                    }
-                  }
-                }}
-              >
-                <svg
-                  className={included ? 'fill-white' : ''}
-                  width="16"
-                  height="16"
-                  viewBox="0 0 48 48"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M23.9986 5L17.8856 17.4776L4 19.4911L14.0589 29.3251L11.6544 43L23.9986 36.4192L36.3454 43L33.9586 29.3251L44 19.4911L30.1913 17.4776L23.9986 5Z"
-                    stroke="#fff"
-                    strokeWidth="4"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                {included ? '取消收藏' : '收藏'}
-              </div>
-            </div>
             <PlayList
               dataSource={playList}
               renderItem={(v: PlayItem) => (
