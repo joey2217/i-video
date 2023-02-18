@@ -25,7 +25,7 @@ const SearchItem: React.FC<Video> = (video) => {
       </div>
       <div>
         <div className="flex items-center mb-1 lg:mb-2">
-          <span className="text-base font-bold mx-1 lg:mx-2 truncate">
+          <span className="text-base font-bold mx-1 lg:mx-2">
             {video.vod_name}
           </span>
         </div>
