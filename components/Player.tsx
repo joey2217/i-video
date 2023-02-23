@@ -76,6 +76,12 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
       30 * 1000,
       { leading: false }
     )
+    const onSeeked = () => {
+      if (onTimeUpdate && video && video.currentTime > 0) {
+        onTimeUpdate(Math.round(video.currentTime))
+      }
+    }
+
     const onPlay = () => {
       if (video) {
         if (seek != null) {
@@ -93,6 +99,7 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
     }
     if (video) {
       video.addEventListener('timeupdate', timeupdate)
+      video.addEventListener('seeked', onSeeked)
       video.addEventListener('loadedmetadata', onPlay)
       video.addEventListener('ended', ended)
     }
@@ -101,6 +108,7 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
         video.removeEventListener('timeupdate', timeupdate)
         video.removeEventListener('loadedmetadata', onPlay)
         video.removeEventListener('ended', ended)
+        video.removeEventListener('seeked', onSeeked)
       }
     }
   }, [onEnd, onTimeUpdate, seek])

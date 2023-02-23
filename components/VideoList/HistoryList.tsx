@@ -8,7 +8,7 @@ interface Props {
 }
 
 const HistoryList: React.FC<Props> = ({ count }) => {
-  const { histories } = useHistory()
+  const { histories,deleteHistory } = useHistory()
   if (histories.length > 0) {
     return (
       <div className="grid grid-cols-2 md:grid-cols-4  lg:grid-cols-6 xl:grid-cols-8 gap-2">
@@ -16,10 +16,10 @@ const HistoryList: React.FC<Props> = ({ count }) => {
           ? histories
               .slice(0, count)
               .map((video) => (
-                <VideoCard key={video.vod_id} video={video} isHistory />
+                <VideoCard key={video.vod_id} video={video} isHistory showDelete onDelete={deleteHistory}/>
               ))
           : histories.map((video) => (
-              <VideoCard key={video.vod_id} video={video} isHistory />
+              <VideoCard key={video.vod_id} video={video} isHistory showDelete  onDelete={deleteHistory}/>
             ))}
       </div>
     )
