@@ -59,18 +59,17 @@ const VideoCard: React.FC<Props> = ({
             priority
             alt={`${video.vod_name}封面`}
           />
-          {/* {showDelete && show && ( */}
-          {
+          {showDelete && show && (
             <div
-              className="absolute top-0 left-0 z-50  text-xl text-white hover:text-gray-400"
+              className="absolute top-0 left-0 z-10 text-xl text-white hover:text-gray-400"
               title="删除"
               onClick={onDeleteClick}
             >
               <DeleteOutlineRounded />
             </div>
-          }
+          )}
           {isHistory ? (
-            <div className="absolute top-0 right-0  text-sm bg-gray-400 bg-opacity-80 text-white px-1">
+            <div className="absolute top-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1">
               <span className="pr-1">{(video as IHistory).episodeName}</span>
               <span>
                 观看至

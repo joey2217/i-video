@@ -154,12 +154,12 @@ const Detail: React.FC = () => {
           seek: 0,
           seekPercentage: '0%',
           episode: index,
-          episodeName,
+          episodeName: liveList[index].name,
           date: Date.now(),
         } as IHistory)
       }
     },
-    [addHistory, episodeName, video]
+    [addHistory, liveList, video]
   )
 
   return (
