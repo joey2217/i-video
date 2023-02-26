@@ -11,6 +11,7 @@ interface Props {
 }
 
 let hls: Hls
+const SEEK_STEP = 5
 
 const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
   const videoEl = useRef<HTMLVideoElement>(null)
@@ -97,11 +98,34 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
         onEnd()
       }
     }
+    const onkeydown = throttle((e: KeyboardEvent) => {
+      console.log(e)
+      if (e.key === 'ArrowRight') {
+        if (video && video.currentTime > 0) {
+          video.currentTime = video.currentTime + SEEK_STEP
+        }
+      } else if (e.key === 'ArrowLeft') {
+        if (video && video.currentTime > 0) {
+          video.currentTime = video.currentTime - SEEK_STEP
+        }
+      } else if (e.key === 'Space') {
+        e.preventDefault()
+        if (video) {
+          if (video.paused) {
+            video.play()
+          } else {
+            video.pause()
+          }
+        }
+      }
+    }, 500)
+    
     if (video) {
       video.addEventListener('timeupdate', timeupdate)
       video.addEventListener('seeked', onSeeked)
       video.addEventListener('loadedmetadata', onPlay)
       video.addEventListener('ended', ended)
+      document.addEventListener('keydown', onkeydown)
     }
     return () => {
       if (video) {
@@ -109,6 +133,7 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
         video.removeEventListener('loadedmetadata', onPlay)
         video.removeEventListener('ended', ended)
         video.removeEventListener('seeked', onSeeked)
+        document.removeEventListener('keydown', onkeydown)
       }
     }
   }, [onEnd, onTimeUpdate, seek])
