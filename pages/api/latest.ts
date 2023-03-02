@@ -23,7 +23,7 @@ export default async function handler(
 ) {
   try {
     //1 = 电视剧 2 =电影 17 =动漫 27 =综艺
-    const fetch = [fetchList(20), fetchList(12), fetchList(24), fetchList(27)]
+    const fetch = [fetchList(20), fetchList(14), fetchList(24), fetchList(27)]
     const [tvList, movieList, cartoonList, varietyList] = await Promise.all(
       fetch
     )

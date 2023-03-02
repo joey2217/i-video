@@ -61,7 +61,7 @@ const VideoCard: React.FC<Props> = ({
           />
           {showDelete && show && (
             <div
-              className="absolute top-0 left-0 z-10 text-xl text-white hover:text-gray-400"
+              className="absolute w-20 h-20 p-2 top-0 bottom-0 left-0 right-0 m-auto z-10 text-5xl flex justify-center items-center bg-gray-50 bg-opacity-50 rounded-full text-white"
               title="删除"
               onClick={onDeleteClick}
             >
@@ -69,7 +69,7 @@ const VideoCard: React.FC<Props> = ({
             </div>
           )}
           {isHistory ? (
-            <div className="absolute top-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1">
+            <div className="absolute top-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1 truncate">
               <span className="pr-1">{(video as IHistory).episodeName}</span>
               <span>
                 观看至
