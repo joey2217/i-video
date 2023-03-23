@@ -4,7 +4,6 @@ import { throttle } from '../utils'
 
 interface Props {
   liveUrl?: string
-  playUrl?: string
   onEnd?: () => void
   onTimeUpdate?: (seek: number) => void
   seek?: number
@@ -67,21 +66,14 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
 
   useEffect(() => {
     const video = videoEl.current
-    const timeupdate = throttle(
-      () => {
-        // console.log(video && video.currentTime, 'timeupdate currentTime')
-        if (onTimeUpdate && video && video.currentTime > 0) {
-          onTimeUpdate(Math.round(video.currentTime))
-        }
-      },
-      30 * 1000,
-      { leading: false }
-    )
-    const onSeeked = () => {
+
+    const updateTime = () => {
       if (onTimeUpdate && video && video.currentTime > 0) {
         onTimeUpdate(Math.round(video.currentTime))
       }
     }
+
+    const timeupdate = throttle(updateTime, 30 * 1000, { leading: false })
 
     const onPlay = () => {
       if (video) {
@@ -98,41 +90,81 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
         onEnd()
       }
     }
-    const onkeydown = throttle((e: KeyboardEvent) => {
-      console.log(e)
-      if (e.key === 'ArrowRight') {
-        if (video && video.currentTime > 0) {
+
+    const move = (dir: 'forward' | 'back') => {
+      if (video && video.currentTime > 0) {
+        if (dir === 'forward') {
           video.currentTime = video.currentTime + SEEK_STEP
-        }
-      } else if (e.key === 'ArrowLeft') {
-        if (video && video.currentTime > 0) {
+        } else {
           video.currentTime = video.currentTime - SEEK_STEP
         }
-      } else if (e.key === 'Space') {
-        e.preventDefault()
-        if (video) {
-          if (video.paused) {
-            video.play()
-          } else {
-            video.pause()
-          }
+        if (video.paused) {
+          video.play()
         }
       }
+    }
+
+    const togglePlay = () => {
+      if (video) {
+        if (video.paused) {
+          video.play()
+        } else {
+          video.pause()
+        }
+      }
+    }
+
+    const onkeydown = throttle((e: KeyboardEvent) => {
+      if (e.code === 'ArrowRight') {
+        move('forward')
+      } else if (e.code === 'ArrowLeft') {
+        move('back')
+      } else if (e.code === 'Space') {
+        togglePlay()
+      }
     }, 500)
-    
+
+    let startX = 0
+    const onTouchStart = (e: TouchEvent) => {
+      const touches = e.changedTouches
+      if (touches[0]) {
+        startX = touches[0].pageX
+      }
+    }
+    const onTouchEnd = (e: TouchEvent) => {
+      const touches = e.changedTouches
+      if (touches[0]) {
+        const endX = touches[0].pageX
+        const diff = endX - startX
+        if (diff > 10) {
+          move('forward')
+        } else if (diff < -10) {
+          move('back')
+        } else {
+          togglePlay()
+        }
+      }
+    }
+
     if (video) {
       video.addEventListener('timeupdate', timeupdate)
-      video.addEventListener('seeked', onSeeked)
+      video.addEventListener('seeked', updateTime)
+      video.addEventListener('pause', updateTime)
       video.addEventListener('loadedmetadata', onPlay)
       video.addEventListener('ended', ended)
+      video.addEventListener('touchstart', onTouchStart)
+      video.addEventListener('touchend', onTouchEnd)
       document.addEventListener('keydown', onkeydown)
     }
     return () => {
       if (video) {
         video.removeEventListener('timeupdate', timeupdate)
         video.removeEventListener('loadedmetadata', onPlay)
+        video.removeEventListener('pause', updateTime)
         video.removeEventListener('ended', ended)
-        video.removeEventListener('seeked', onSeeked)
+        video.removeEventListener('seeked', updateTime)
+        video.removeEventListener('touchstart', onTouchStart)
+        video.removeEventListener('touchend', onTouchEnd)
         document.removeEventListener('keydown', onkeydown)
       }
     }
