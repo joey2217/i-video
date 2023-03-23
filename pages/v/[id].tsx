@@ -173,7 +173,6 @@ const Detail: React.FC = () => {
       <div className="lg:flex-1">
         <Player
           liveUrl={liveList.length > 0 ? liveList[playIndex].url : undefined}
-          playUrl={playList.length > 0 ? playList[playIndex].url : undefined}
           seek={seek}
           onEnd={goNext}
           onTimeUpdate={onTimeUpdate}
