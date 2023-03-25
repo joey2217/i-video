@@ -140,8 +140,6 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
           move('forward')
         } else if (diff < -10) {
           move('back')
-        } else {
-          togglePlay()
         }
       }
     }
