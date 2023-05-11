@@ -1,5 +1,3 @@
-import type { PlayItem } from '../types'
-
 //vod_play_from = "jinyingm3u8$$$jinyingyun
 //vod_play_url = 第01集$https://hd.njeere.com/play/50756/index.m3u8#第02集$https://hd.njeere.com/play/50758/index.m3u8#第03集$https://hd.njeere.com/play/50759/index.m3u8#第04集$https://hd.njeere.com/play/50761/index.m3u8#第05集$https://hd.njeere.com/play/50762/index.m3u8#第06集$https://hd.njeere.com/play/51958/index.m3u8#第07集$https://hd.njeere.com/play/51959/index.m3u8#第08集$https://hd.njeere.com/play/52292/index.m3u8#第09集$https://hd.njeere.com/play/52629/index.m3u8#第10集$https://hd.njeere.com/play/53227/index.m3u8$$$第01集$https://hd.njeere.com/play/50756#第02集$https://hd.njeere.com/play/50758#第03集$https://hd.njeere.com/play/50759#第04集$https://hd.njeere.com/play/50761#第05集$https://hd.njeere.com/play/50762#第06集$https://hd.njeere.com/play/51958#第07集$https://hd.njeere.com/play/51959#第08集$https://hd.njeere.com/play/52292#第09集$https://hd.njeere.com/play/52629#第10集$https://hd.njeere.com/play/53227
 
@@ -23,16 +21,10 @@ export function parseVideoPlayUrl(vod_play_from: string, vod_play_url: string) {
       return { name, url }
     })
   )
-  const [option1, option2] = options
-  let m3u8List: PlayItem[] = []
-  let yunList: PlayItem[] = []
-  if (option1 === 'jinyingm3u8') {
-    m3u8List = blocks[0]
-  }
-  if (option2 === 'jinyingyun') {
-    yunList = blocks[1]
-  }
-
+  const m3u8Index = options.indexOf('jinyingm3u8') || 0
+  const m3u8List = blocks[m3u8Index]
+  const yunIndex = options.indexOf('jinyingyun') || 1
+  const yunList = blocks[yunIndex]
   return {
     m3u8List,
     yunList,

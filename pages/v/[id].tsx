@@ -83,6 +83,7 @@ const Detail: React.FC = () => {
         setCurrentHistory(his)
       } else {
         setPlayIndex(0)
+        const l = liveList[0]
         const newHistory = {
           vod_id: video.vod_id,
           vod_pic: video.vod_pic,
@@ -94,7 +95,7 @@ const Detail: React.FC = () => {
           seek: 0,
           seekPercentage: '0%',
           episode: 0,
-          episodeName: liveList[0].name,
+          episodeName: l ? l.name : '',
           date: Date.now(),
         } as IHistory
         setCurrentHistory(newHistory)
