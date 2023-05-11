@@ -4,6 +4,10 @@
 
 @import '~antd/dist/antd.dark.css';
 
+html {
+  color-scheme: dark;
+}
+
 .row {
   @apply text-base flex mb-1 lg:mb-2;
 }
