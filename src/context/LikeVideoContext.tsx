@@ -8,15 +8,13 @@ import useLocalStorage from '@/hooks/useLocalStorage'
 interface LikeVideoProps {
   likes: Video[]
   likeIds: number[]
-  addLike: (v: Video) => void
-  removeLike: (v: Video) => void
+  toggleLike: (v: Video) => void
 }
 
 const LikeVideoContext = React.createContext<LikeVideoProps>({
   likes: [],
   likeIds: [],
-  addLike: () => {},
-  removeLike: () => {},
+  toggleLike: () => {},
 })
 
 export function useLikeVideo() {
@@ -30,18 +28,16 @@ export const LikeVideoProvider: React.FC<PropsWithChildren> = ({
 
   const likeIds = useMemo(() => likes.map((v) => v.vod_id), [likes])
 
-  const addLike = useCallback(
+  const toggleLike = useCallback(
     (v: Video) => {
-      const video = { ...v, vod_play_url: '', vod_content: '', vod_actor: '' }
-      setLikes((list) => [video, ...list])
+      if (likeIds.includes(v.vod_id)) {
+        setLikes((list) => list.filter((item) => item.vod_id !== v.vod_id))
+      } else {
+        const video = { ...v, vod_play_url: '', vod_content: '', vod_actor: '' }
+        setLikes((list) => [video, ...list])
+      }
     },
-    [setLikes]
-  )
-  const removeLike = useCallback(
-    (v: Video) => {
-      setLikes((list) => list.filter((item) => item.vod_id !== v.vod_id))
-    },
-    [setLikes]
+    [likeIds, setLikes]
   )
 
   return (
@@ -49,8 +45,7 @@ export const LikeVideoProvider: React.FC<PropsWithChildren> = ({
       value={{
         likes,
         likeIds,
-        addLike,
-        removeLike,
+        toggleLike,
       }}
     >
       {children}

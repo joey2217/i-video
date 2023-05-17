@@ -3,7 +3,7 @@
 import React, { useEffect, useState } from 'react'
 import type { PropsWithChildren } from 'react'
 
-export type Theme = 'dark' | 'light'
+export type Theme = 'dark' | 'light' 
 
 interface ThemeProps {
   theme: Theme
@@ -41,6 +41,9 @@ export const ThemeProvider: React.FC<PropsWithChildren> = ({ children }) => {
 const LOCAL_THEME = 'local_theme'
 
 function getTheme(): Theme {
+  if (typeof window === 'undefined') {
+    return 'light'
+  }
   if (
     localStorage[LOCAL_THEME] === 'dark' ||
     (!(LOCAL_THEME in localStorage) &&

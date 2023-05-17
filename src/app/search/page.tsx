@@ -17,6 +17,10 @@ export default async function SearchPage({
     `${BASE_URL}?ac=detail&wd=${q}&pg=${pageNum}`
   ).then((res) => res.json() as Promise<VideoResponse>)
 
+  if (list.length === 0) {
+    return <div className="my-4 text-center">暂无数据</div>
+  }
+
   return (
     <div>
       <div className="divide-y divide-neutral-500">

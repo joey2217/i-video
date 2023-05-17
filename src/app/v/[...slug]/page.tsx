@@ -39,13 +39,13 @@ export default async function VideoPage({
 
   const live = m3u8List[num]
 
-  if (live == null) {
+  if (video == null || live == null) {
     return <div className="text-center">暂无数据</div>
   }
 
   return (
-    <section className='mt-2'>
-      <VideoHeader title={vod_name} />
+    <section className="mt-2">
+      <VideoHeader title={vod_name} video={video} />
       <VideoPlayer liveUrl={live.url} video={video} />
       <VideoTabs
         video={video}
