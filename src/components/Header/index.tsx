@@ -54,19 +54,30 @@ const Header: React.FC = () => {
   const pathname = usePathname()
 
   return (
-    <header className="bg-white dark:bg-gray-900 hover:shadow-md sticky top-0 z-50 px-2 lg:px-4 border-b border-slate-900/20 dark:border-slate-50/20">
-      <div className="flex items-center gap-4">
-        <Link href="/" className="flex items-center gap-2 link">
-          <Image
-            src="/logo.png"
-            alt="logo"
-            width={192}
-            height={192}
-            className="w-6 h-6"
-          />
-          <span className="text-base font-semibold md:text-lg">视频资源网</span>
-        </Link>
-        <nav className="mr-auto flex items-center gap-4">
+    <header className=" bg-white dark:bg-gray-900 hover:shadow-md sticky top-0 z-50 px-2 lg:px-4 border-b border-slate-900/20 dark:border-slate-50/20">
+      <div className="md:flex flex-col md:flex-row items-center gap-4">
+        <div className="flex items-center gap-4">
+          <Link href="/" className="flex items-center gap-2 link">
+            <Image
+              src="/logo.png"
+              alt="logo"
+              width={192}
+              height={192}
+              className="w-6 h-6"
+            />
+            <span className="text-base font-semibold md:text-lg">
+              视频资源网
+            </span>
+          </Link>
+          <div className="flex md:hidden h-10">
+            <SearchInput
+              size="small"
+              className={pathname === '/search' ? 'hidden' : ''}
+            />
+            <ThemeButton />
+          </div>
+        </div>
+        <nav className="flex items-center justify-around md:justify-normal gap-4 text-sm md:text-base h-10">
           {navLinks.map((link) => {
             const isActive =
               link.key === '/'
@@ -84,11 +95,13 @@ const Header: React.FC = () => {
             )
           })}
         </nav>
-        <SearchInput
-          size="small"
-          className={pathname === '/search' ? 'hidden' : ''}
-        />
-        <ThemeButton />
+        <div className="ml-auto hidden md:flex h-10 items-center">
+          <SearchInput
+            size="small"
+            className={pathname === '/search' ? 'hidden' : ''}
+          />
+          <ThemeButton />
+        </div>
       </div>
     </header>
   )

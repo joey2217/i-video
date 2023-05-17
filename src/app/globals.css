@@ -14,7 +14,7 @@ html.dark {
 }
 
 a.link {
-  @apply truncate text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white;
+  @apply text-gray-700 hover:text-black dark:text-gray-300 dark:hover:text-white;
 }
 
 a.link.active {

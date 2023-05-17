@@ -15,7 +15,7 @@ export default async function Page({ params }: { params: { slug: string[] } }) {
 
   return (
     <>
-      <div className="my-2 grid gap-1 md:gap-4 grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8">
+      <div className="my-2 grid gap-1 md:gap-2 grid-cols-2 sm:grid-cols-4 lg:grid-cols-5 xl:grid-cols-8">
         {list.map((v) => (
           <VideoCard video={v} key={v.vod_id} />
         ))}

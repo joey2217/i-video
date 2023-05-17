@@ -23,7 +23,7 @@ const RecordList: React.FC<Props> = ({ count }) => {
   }
 
   return (
-    <div className="grid gap-2 md:gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
+    <div className="grid gap-1 md:gap-2 grid-cols-2 sm:grid-cols-3 lg:grid-cols-6">
       {list.map((r) => (
         <VideoRecordCard key={r.vod_id} video={r} />
       ))}

@@ -77,11 +77,13 @@ export default async function Page({}: {}) {
   ])
   return (
     <section>
-      {/* <BannerSwiper bannerData={HOT} /> */}
-
+      <BannerSwiper bannerData={HOT} />
       <div className="my-3">
-        <div className="my-2">
+        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
           <h2 className="text-xl font-semibold">看过</h2>
+          <Link href="/record" className="link">
+            全部
+          </Link>
         </div>
         <RecordList count={6} />
       </div>
@@ -94,7 +96,7 @@ export default async function Page({}: {}) {
             </Link>
           ))}
         </div>
-        <div className="grid grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {movies.map((m) => (
             <VideoCard key={m.vod_id} video={m} />
           ))}
@@ -109,7 +111,7 @@ export default async function Page({}: {}) {
             </Link>
           ))}
         </div>
-        <div className="grid grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {tvs.map((m) => (
             <VideoCard key={m.vod_id} video={m} />
           ))}
@@ -124,7 +126,7 @@ export default async function Page({}: {}) {
             </Link>
           ))}
         </div>
-        <div className="grid grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {cartoon.map((m) => (
             <VideoCard key={m.vod_id} video={m} />
           ))}
@@ -139,7 +141,7 @@ export default async function Page({}: {}) {
             </Link>
           ))}
         </div>
-        <div className="grid grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
           {variety.map((m) => (
             <VideoCard key={m.vod_id} video={m} />
           ))}

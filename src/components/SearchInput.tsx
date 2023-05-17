@@ -24,7 +24,7 @@ const SearchInput: React.FC<Props> = ({ size = 'defalut', className = '' }) => {
   }
 
   return (
-    <div className={`relative rounded-md overflow-hidden ${className}`}>
+    <div className={`relative rounded-md h-fit overflow-hidden ${className}`}>
       <input
         type="text"
         placeholder="搜索"
