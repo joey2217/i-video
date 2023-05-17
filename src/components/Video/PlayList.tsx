@@ -59,18 +59,20 @@ const PlayList: React.FC<Props> = ({
   }
   return (
     <div>
-      <div className="px-1 py-2 flex gap-4 items-center justify-center">
+      <div className="mx-auto w-fit py-1 px-2 bg-neutral-200 dark:bg-neutral-800 text-center rounded-md flex gap-4 items-center flex-wrap justify-center">
         {tabs.map((tab) => (
           <button
             key={tab.value}
-            className="inline-block px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 focus:relative"
+            className={`${
+              value === tab.value ? 'text-blue-600 bg-white dark:bg-black' : ''
+            } rounded py-0.5 px-2`}
             onClick={() => setValue(tab.value)}
           >
-            Edit
+            {tab.label}
           </button>
         ))}
       </div>
-      <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4">
+      <div className="my-2 md:my-4 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4">
         {list.map((item, i) => renderItem(item, value * SIZE + i))}
       </div>
     </div>

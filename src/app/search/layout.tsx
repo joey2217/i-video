@@ -7,18 +7,13 @@ export const metadata: Metadata = {
 
 export default function SearchLayout({
   children,
-  searchParams,
 }: {
   children: React.ReactNode
-  searchParams: {
-    q?: string
-  }
 }) {
-  const { q = '' } = searchParams || {}
   return (
     <section className="my-4">
       <div className="mb-4">
-        <SearchInput defalutValue={q} />
+        <SearchInput />
       </div>
       {children}
     </section>

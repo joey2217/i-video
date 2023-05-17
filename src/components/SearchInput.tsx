@@ -1,28 +1,41 @@
 'use client'
 import React, { memo, useState } from 'react'
 import { SearchIcon } from './Icons'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 interface Props {
-  defalutValue?: string
+  size?: 'defalut' | 'small'
+  className?: string
 }
 
-const SearchInput: React.FC<Props> = ({ defalutValue = '' }) => {
-  const [value, setValue] = useState(defalutValue)
+const SearchInput: React.FC<Props> = ({ size = 'defalut', className = '' }) => {
+  const searchParams = useSearchParams()
+  const [value, setValue] = useState(searchParams.get('q') || '')
   const router = useRouter()
 
   const onSearch = () => {
     router.push('/search?q=' + value)
   }
 
+  const onKeyDown = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      onSearch()
+    }
+  }
+
   return (
-    <div className="relative rounded-md overflow-hidden">
+    <div className={`relative rounded-md overflow-hidden ${className}`}>
       <input
         type="text"
         placeholder="搜索"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className="bg-neutral-200 dark:bg-neutral-700 w-full py-2.5 px-4 pe-10 shadow-sm text-sm md:text-base outline-none"
+        className={`bg-neutral-200 dark:bg-neutral-700 w-full md:min-w-[260px]  pe-10 shadow-sm  outline-none ${
+          size === 'small'
+            ? 'py-1.5 px-3 text-sm'
+            : 'py-2.5 px-4 text-sm md:text-base'
+        }`}
+        onKeyDown={onKeyDown}
       />
 
       <button
