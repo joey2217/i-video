@@ -30,7 +30,7 @@ const SearchInput: React.FC<Props> = ({ size = 'defalut', className = '' }) => {
         placeholder="搜索"
         value={value}
         onChange={(e) => setValue(e.target.value)}
-        className={`bg-neutral-200 dark:bg-neutral-700 w-full md:min-w-[260px]  pe-10 shadow-sm  outline-none ${
+        className={`bg-neutral-200 dark:bg-neutral-700 w-full lg:min-w-[260px]  pe-10 shadow-sm  outline-none ${
           size === 'small'
             ? 'py-1.5 px-3 text-sm'
             : 'py-2.5 px-4 text-sm md:text-base'
@@ -40,7 +40,9 @@ const SearchInput: React.FC<Props> = ({ size = 'defalut', className = '' }) => {
 
       <button
         type="button"
-        className="absolute inset-y-0 end-0 grid w-12 place-content-center bg-blue-500 text-white hover:bg-blue-500/80"
+        className={`absolute inset-y-0 end-0 grid place-content-center bg-blue-500 text-white hover:bg-blue-500/80  ${
+          size === 'small' ? 'w-10' : 'w-12'
+        } `}
         onClick={onSearch}
       >
         <span className="sr-only">搜索</span>
