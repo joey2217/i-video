@@ -1,0 +1,301 @@
+import type { SVGProps } from 'react'
+
+export function Spinner(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 24 24"
+      {...props}
+    >
+      <rect width="7.33" height="7.33" x="1" y="1" fill="currentColor">
+        <animate
+          id="svgSpinnersBlocksWave0"
+          attributeName="x"
+          begin="0;svgSpinnersBlocksWave1.end+0.2s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="0;svgSpinnersBlocksWave1.end+0.2s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="0;svgSpinnersBlocksWave1.end+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="0;svgSpinnersBlocksWave1.end+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="8.33" y="1" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="1" y="8.33" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.1s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="15.66" y="1" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="8.33" y="8.33" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="1" y="15.66" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="1;4;1"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.2s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="15.66" y="8.33" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="8.33" y="15.66" fill="currentColor">
+        <animate
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="8.33;11.33;8.33"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.3s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+      <rect width="7.33" height="7.33" x="15.66" y="15.66" fill="currentColor">
+        <animate
+          id="svgSpinnersBlocksWave1"
+          attributeName="x"
+          begin="svgSpinnersBlocksWave0.begin+0.4s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="y"
+          begin="svgSpinnersBlocksWave0.begin+0.4s"
+          dur="0.6s"
+          values="15.66;18.66;15.66"
+        ></animate>
+        <animate
+          attributeName="width"
+          begin="svgSpinnersBlocksWave0.begin+0.4s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+        <animate
+          attributeName="height"
+          begin="svgSpinnersBlocksWave0.begin+0.4s"
+          dur="0.6s"
+          values="7.33;1.33;7.33"
+        ></animate>
+      </rect>
+    </svg>
+  )
+}
+
+export function ChevronLeft(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M31.884 8.366a1.25 1.25 0 0 1 0 1.768L18.018 24l13.866 13.866a1.25 1.25 0 0 1-1.768 1.768l-14.75-14.75a1.25 1.25 0 0 1 0-1.768l14.75-14.75a1.25 1.25 0 0 1 1.768 0Z"
+      ></path>
+    </svg>
+  )
+}
+
+export function ChevronRight(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M16.116 39.634a1.25 1.25 0 0 1 0-1.768L29.982 24L16.116 10.134a1.25 1.25 0 0 1 1.768-1.768l14.75 14.75a1.25 1.25 0 0 1 0 1.768l-14.75 14.75a1.25 1.25 0 0 1-1.768 0Z"
+      ></path>
+    </svg>
+  )
+}
+
+export function SearchIcon(props: SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="1em"
+      height="1em"
+      viewBox="0 0 48 48"
+      {...props}
+    >
+      <path
+        fill="currentColor"
+        d="M20 6C12.268 6 6 12.268 6 20s6.268 14 14 14a13.94 13.94 0 0 0 8.976-3.256l10.89 10.89a1.25 1.25 0 0 0 1.768-1.768l-10.89-10.89A13.944 13.944 0 0 0 34 20c0-7.732-6.268-14-14-14ZM8.5 20c0-6.351 5.149-11.5 11.5-11.5S31.5 13.649 31.5 20S26.351 31.5 20 31.5S8.5 26.351 8.5 20Z"
+      ></path>
+    </svg>
+  )
+}
