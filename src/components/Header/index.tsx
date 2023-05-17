@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         <div className="flex items-center gap-1 md:gap-2 lg:gap-4">
           <Link
             href="/"
-            className="flex items-center gap-1 md:gap-2 lg:gap-4 link truncate"
+            className="flex items-center gap-1 md:gap-2 lg:gap-4 link truncate shrink-0"
           >
             <Image
               src="/logo.png"
@@ -72,7 +72,7 @@ const Header: React.FC = () => {
               视频资源网
             </span>
           </Link>
-          <div className="ml-auto flex items-center md:hidden h-10">
+          <div className="ml-auto shrink flex items-center md:hidden h-10">
             <SearchInput
               size="small"
               className={pathname === '/search' ? 'hidden' : 'w-fit'}
