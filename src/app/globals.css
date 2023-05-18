@@ -35,3 +35,7 @@ a.link.active {
   top: -0.5px;
   margin: 0 8px 0 2px;
 }
+
+.page {
+  @apply px-1 md:px-2 lg:px-4;
+}

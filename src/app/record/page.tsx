@@ -7,7 +7,7 @@ export const metadata: Metadata = {
 
 export default function RecordPage() {
   return (
-    <div className="my-2 md:my-4">
+    <div className="my-2 md:my-4 page">
       <RecordList />
     </div>
   )

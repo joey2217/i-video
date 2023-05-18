@@ -76,77 +76,83 @@ export default async function Page({}: {}) {
     cartoonRes,
   ])
   return (
-    <section>
+    <>
       <BannerSwiper bannerData={HOT} />
-      <div className="my-3">
-        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
-          <h2 className="text-xl font-semibold">看过</h2>
-          <Link href="/record" className="link">
-            全部
-          </Link>
-        </div>
-        <RecordList count={6} />
-      </div>
-      <div className="my-3">
-        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
-          <h2 className="text-xl font-semibold">电影</h2>
-          {RESOURCE_TYPES.movie.map((m) => (
-            <Link href={`/r/movie/${m.value}`} key={m.value} className="link">
-              {m.label}
+      <section className='page'>
+        <div className="my-3">
+          <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
+            <h2 className="text-xl font-semibold">看过</h2>
+            <Link href="/record" className="link">
+              全部
             </Link>
-          ))}
+          </div>
+          <RecordList count={6} />
         </div>
-        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {movies.map((m) => (
-            <VideoCard key={m.vod_id} video={m} />
-          ))}
+        <div className="my-3">
+          <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
+            <h2 className="text-xl font-semibold">电影</h2>
+            {RESOURCE_TYPES.movie.map((m) => (
+              <Link href={`/r/movie/${m.value}`} key={m.value} className="link">
+                {m.label}
+              </Link>
+            ))}
+          </div>
+          <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {movies.map((m) => (
+              <VideoCard key={m.vod_id} video={m} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="my-3">
-        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
-          <h2 className="text-xl font-semibold">电视剧</h2>
-          {RESOURCE_TYPES.tv.map((m) => (
-            <Link href={`/r/tv/${m.value}`} key={m.value} className="link">
-              {m.label}
-            </Link>
-          ))}
+        <div className="my-3">
+          <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
+            <h2 className="text-xl font-semibold">电视剧</h2>
+            {RESOURCE_TYPES.tv.map((m) => (
+              <Link href={`/r/tv/${m.value}`} key={m.value} className="link">
+                {m.label}
+              </Link>
+            ))}
+          </div>
+          <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {tvs.map((m) => (
+              <VideoCard key={m.vod_id} video={m} />
+            ))}
+          </div>
         </div>
-        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {tvs.map((m) => (
-            <VideoCard key={m.vod_id} video={m} />
-          ))}
+        <div className="my-3">
+          <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
+            <h2 className="text-xl font-semibold">动漫</h2>
+            {RESOURCE_TYPES.cartoon.map((m) => (
+              <Link href={`/r/movie/${m.value}`} key={m.value} className="link">
+                {m.label}
+              </Link>
+            ))}
+          </div>
+          <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {cartoon.map((m) => (
+              <VideoCard key={m.vod_id} video={m} />
+            ))}
+          </div>
         </div>
-      </div>
-      <div className="my-3">
-        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
-          <h2 className="text-xl font-semibold">动漫</h2>
-          {RESOURCE_TYPES.cartoon.map((m) => (
-            <Link href={`/r/movie/${m.value}`} key={m.value} className="link">
-              {m.label}
-            </Link>
-          ))}
+        <div className="my-3">
+          <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
+            <h2 className="text-xl font-semibold">综艺</h2>
+            {RESOURCE_TYPES.variety.map((m) => (
+              <Link
+                href={`/r/variety/${m.value}`}
+                key={m.value}
+                className="link"
+              >
+                {m.label}
+              </Link>
+            ))}
+          </div>
+          <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
+            {variety.map((m) => (
+              <VideoCard key={m.vod_id} video={m} />
+            ))}
+          </div>
         </div>
-        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {cartoon.map((m) => (
-            <VideoCard key={m.vod_id} video={m} />
-          ))}
-        </div>
-      </div>
-      <div className="my-3">
-        <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
-          <h2 className="text-xl font-semibold">综艺</h2>
-          {RESOURCE_TYPES.variety.map((m) => (
-            <Link href={`/r/variety/${m.value}`} key={m.value} className="link">
-              {m.label}
-            </Link>
-          ))}
-        </div>
-        <div className="grid gap-1 md:gap-2 grid-cols-2 sm::grid-cols-3 md:grid-cols-4 lg:grid-cols-6">
-          {variety.map((m) => (
-            <VideoCard key={m.vod_id} video={m} />
-          ))}
-        </div>
-      </div>
-    </section>
+      </section>
+    </>
   )
 }

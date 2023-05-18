@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function LikePage({}: {}) {
   return (
-    <div className="my-2 md:my-4">
+    <div className="my-2 md:my-4 page">
       <LikeList />
     </div>
   )

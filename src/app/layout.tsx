@@ -23,7 +23,7 @@ export default function RootLayout({
       <Providers>
         <body>
           <Header />
-          <main className="mb-4 px-1 md:px-2 lg:px-4"> {children}</main>
+          <main className="mb-4"> {children}</main>
           <footer className="text-sm md:text-base text-center mb-4">
             所有资源均来自互联网
           </footer>

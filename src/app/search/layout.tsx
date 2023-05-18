@@ -11,7 +11,7 @@ export default function SearchLayout({
   children: React.ReactNode
 }) {
   return (
-    <section className="my-4">
+    <section className="my-4 page">
       <div className="mb-4">
         <SearchInput />
       </div>

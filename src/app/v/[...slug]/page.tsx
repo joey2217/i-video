@@ -44,7 +44,7 @@ export default async function VideoPage({
   }
 
   return (
-    <section className="mt-2">
+    <section className="mt-2 page">
       <VideoHeader title={vod_name} video={video} />
       <VideoPlayer liveUrl={live.url} video={video} />
       <VideoTabs

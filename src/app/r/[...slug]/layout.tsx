@@ -26,7 +26,7 @@ export default function MovieLayout({
   const types = RESOURCE_TYPES[res as TypeKey]
   const type = typeStr || types[0].value
   return (
-    <section>
+    <section className="page">
       <div className="my-2 p-1 mx-auto w-fit bg-neutral-200 dark:bg-neutral-800 rounded-md flex items-center flex-wrap justify-center">
         {types.map((t) => (
           <Link

@@ -54,7 +54,7 @@ const Header: React.FC = () => {
   const pathname = usePathname()
 
   return (
-    <header className=" bg-white dark:bg-gray-900 hover:shadow-md sticky top-0 z-50 px-1 md:px-2 lg:px-4 border-b border-slate-900/20 dark:border-slate-50/20">
+    <header className=" bg-white dark:bg-neutral-900 hover:shadow-md sticky top-0 z-50 px-1 md:px-2 lg:px-4 border-b border-slate-900/20 dark:border-slate-50/20">
       <div className="md:flex flex-col md:flex-row items-center gap-1 md:gap-2 lg:gap-4">
         <div className="flex items-center gap-1 md:gap-2 lg:gap-4">
           <Link

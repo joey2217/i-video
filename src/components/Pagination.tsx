@@ -19,7 +19,7 @@ const Pagination: React.FC<Props> = ({
     <div className="flex items-center justify-center gap-4 text-sm md:text-base lg:text-lg">
       <Link
         href={prevHref || 'javascript:void(0)'}
-        className="text-2xl border rounded-md px-2 py-0.5 hover:text-blue-600 hover:border-blue-600"
+        className="text-2xl border border-slate-900/20 dark:border-slate-50/20 rounded-md px-2 py-0.5 hover:text-blue-600 hover:border-blue-600"
         title="上一页"
       >
         <ChevronLeft />
@@ -31,7 +31,7 @@ const Pagination: React.FC<Props> = ({
       </div>
       <Link
         href={nextHref || 'javascript:void(0)'}
-        className="text-2xl border rounded-md px-2 py-0.5 hover:text-blue-600 hover:border-blue-600"
+        className="text-2xl border border-slate-900/20 dark:border-slate-50/20 rounded-md px-2 py-0.5 hover:text-blue-600 hover:border-blue-600"
         title="下一页"
       >
         <ChevronRight />
