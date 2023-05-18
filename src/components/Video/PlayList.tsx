@@ -52,7 +52,7 @@ const PlayList: React.FC<Props> = ({
 
   if (dataSource.length < SIZE) {
     return (
-      <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4">
+      <div className="grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4 items-start">
         {dataSource.map(renderItem)}
       </div>
     )
@@ -72,7 +72,7 @@ const PlayList: React.FC<Props> = ({
           </button>
         ))}
       </div>
-      <div className="my-2 md:my-4 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4">
+      <div className="my-2 md:my-4 grid grid-cols-4 sm:grid-cols-6 lg:grid-cols-8 gap-1 md:gap-4 items-start">
         {list.map((item, i) => renderItem(item, value * SIZE + i))}
       </div>
     </div>

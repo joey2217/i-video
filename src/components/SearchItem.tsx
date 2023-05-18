@@ -20,7 +20,7 @@ const SearchItem: React.FC<Props> = ({ video }) => {
           {video.vod_remarks}
         </div>
       </div>
-      <div>
+      <div className="text-sm md:text-base">
         <div className="text-lg md:text-xl font-semibold mb-1 lg:mb-2">
           {video.vod_name}
         </div>
