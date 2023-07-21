@@ -6,12 +6,15 @@ import { BASE_URL, HOT, RESOURCE_TYPES } from '@/utils/constants'
 import Link from 'next/link'
 
 const HOT_MOVIE_IDS = [
+  44472, //闪电侠
+  44174, //变形金刚
+  45239, //碟中谍
   40626, //流浪地球
   40650, // 满江红
   43017, //灌篮高手
-  42928, //忠犬八公
-  42076, // 保你平安
-  31756, // 四海
+  // 42928, //忠犬八公
+  // 42076, // 保你平安
+  // 31756, // 四海
 ]
 
 const HOT_TV_IDS = [
@@ -78,7 +81,7 @@ export default async function Page({}: {}) {
   return (
     <>
       <BannerSwiper bannerData={HOT} />
-      <section className='page'>
+      <section className="page">
         <div className="my-3">
           <div className="my-2 flex gap-2 items-baseline flex-wrap md:gap-4">
             <h2 className="text-xl font-semibold">看过</h2>

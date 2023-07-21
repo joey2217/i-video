@@ -23,7 +23,7 @@ const VideoCard: React.FC<Props> = ({ video }) => {
           height={400}
           src={video.vod_pic}
           alt={`${video.vod_name}封面`}
-          className="w-full"
+          className="w-full aspect-[2/3] object-cover"
         />
         <div className="absolute top-0 right-0  text-sm bg-gray-400 bg-opacity-80 text-white px-1">
           豆瓣 : {video.vod_douban_score || '无'}

@@ -34,7 +34,7 @@ const VideoRecordCard: React.FC<Props> = ({ video }) => {
           height={400}
           src={video.vod_pic}
           alt={`${video.vod_name}封面`}
-          className="w-full"
+          className="w-full aspect-[2/3] object-cover"
         />
         <div className="absolute top-0 right-0  text-sm bg-gray-400 bg-opacity-80 text-white px-1">
           豆瓣 : {video.vod_douban_score || '无'}
@@ -44,7 +44,7 @@ const VideoRecordCard: React.FC<Props> = ({ video }) => {
         </div>
       </div>
       <div className="flex">
-        <div className="flex-1">
+        <div className="flex-1 overflow-hidden">
           <div className="truncate text-base text-opacity-90 p-1 hover:text-blue-600">
             {video.vod_name}
           </div>
@@ -52,7 +52,7 @@ const VideoRecordCard: React.FC<Props> = ({ video }) => {
             {video.vod_tag}
           </div>
         </div>
-        <button className="text-4xl" title='移除' onClick={onRemove}>
+        <button className="text-4xl" title="移除" onClick={onRemove}>
           <FluentDelete />
         </button>
       </div>
