@@ -3,7 +3,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import type { PropsWithChildren } from 'react'
 import type { VideoRecord, VideoResponse } from '@/types'
-import { BASE_URL } from '@/utils/constants'
 
 interface VideoRecordProps {
   records: VideoRecord[]
@@ -37,26 +36,30 @@ export const VideoRecordProvider: React.FC<PropsWithChildren> = ({
           const data = JSON.parse(localData) as VideoRecord[]
           setRecords(data)
           const ids = data.map((v) => v.vod_id)
-          fetch(`/api/video_list?ac=detail&ids=${ids}`)
-            .then((res) => res.json() as Promise<VideoResponse>)
-            .then((res) => {
-              res.list.sort(
-                (a, b) => ids.indexOf(a.vod_id) - ids.indexOf(b.vod_id)
-              )
-              return res.list
-            })
-            .then((list) => {
-              const recordData = list.map((item, index) => {
-                console.log(item.vod_id === data[index].vod_id)
-                return {
-                  ...item,
-                  path: data[index].path,
-                  seek: data[index].seek,
+          if (ids.length > 0) {
+            fetch(`/api/video_list?ac=detail&ids=${ids}`)
+              .then((res) => res.json() as Promise<VideoResponse>)
+              .then((res) => {
+                res.list.sort(
+                  (a, b) => ids.indexOf(a.vod_id) - ids.indexOf(b.vod_id)
+                )
+                return res.list
+              })
+              .then((list) => {
+                if (list.length > 0) {
+                  const recordData = list.map((item, index) => {
+                    console.log(item.vod_id === data[index].vod_id)
+                    return {
+                      ...item,
+                      path: data[index].path,
+                      seek: data[index].seek,
+                    }
+                  })
+                  setRecords(recordData)
                 }
               })
-              setRecords(recordData)
-            })
-            .catch(console.error)
+              .catch(console.error)
+          }
         } catch (error) {
           console.error(error)
         }
