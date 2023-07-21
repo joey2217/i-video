@@ -85,7 +85,7 @@ const Header: React.FC = () => {
             const isActive =
               link.key === '/'
                 ? pathname === '/'
-                : pathname.startsWith(link.key)
+                : pathname?.startsWith(link.key)
 
             return (
               <Link

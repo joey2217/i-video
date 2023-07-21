@@ -19,7 +19,7 @@ const LiveList: React.FC<Props> = ({ m3u8List, currentNum, baseUrl }) => {
         <Link
           className={`${
             currentNum === index ? 'text-blue-600' : ''
-          } text-center px-4 py-1 ring-1 hover:text-blue-600 hover:ring-blue-600 rounded-md`}
+          } text-center px-0.5 md:px-2 lg:px-4 py-1 ring-1 hover:text-blue-600 hover:ring-blue-600 rounded-md truncate`}
           href={`${
             currentNum === index ? 'javascript:void(0)' : `${baseUrl}${index}`
           }`}

@@ -10,7 +10,7 @@ interface Props {
 
 const SearchInput: React.FC<Props> = ({ size = 'defalut', className = '' }) => {
   const searchParams = useSearchParams()
-  const [value, setValue] = useState(searchParams.get('q') || '')
+  const [value, setValue] = useState(searchParams?.get('q') || '')
   const router = useRouter()
 
   const onSearch = () => {

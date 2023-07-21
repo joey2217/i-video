@@ -2,8 +2,8 @@
 
 import React, { useCallback, useEffect, useState } from 'react'
 import type { PropsWithChildren } from 'react'
-import type { VideoRecord } from '@/types'
-import useLocalStorage from '@/hooks/useLocalStorage'
+import type { VideoRecord, VideoResponse } from '@/types'
+import { BASE_URL } from '@/utils/constants'
 
 interface VideoRecordProps {
   records: VideoRecord[]
@@ -21,15 +21,52 @@ export function useVideoRecord() {
   return React.useContext(VideoRecordContext)
 }
 
-const MAX_VIDEO_RECORD_COUNT = 120
+const MAX_VIDEO_RECORD_COUNT = 24
+const VIDEO_STORAGE_KEY = 'video_record'
 
 export const VideoRecordProvider: React.FC<PropsWithChildren> = ({
   children,
 }) => {
-  const [records, setRecords] = useLocalStorage<VideoRecord[]>(
-    'video_record',
-    []
-  )
+  const [records, setRecords] = useState<VideoRecord[]>([])
+
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const localData = localStorage.getItem(VIDEO_STORAGE_KEY)
+      if (localData) {
+        try {
+          const data = JSON.parse(localData) as VideoRecord[]
+          setRecords(data)
+          const ids = data.map((v) => v.vod_id)
+          fetch(`/api/video_list?ac=detail&ids=${ids}`)
+            .then((res) => res.json() as Promise<VideoResponse>)
+            .then((res) => {
+              res.list.sort(
+                (a, b) => ids.indexOf(a.vod_id) - ids.indexOf(b.vod_id)
+              )
+              return res.list
+            })
+            .then((list) => {
+              const recordData = list.map((item, index) => {
+                console.log(item.vod_id === data[index].vod_id)
+                return {
+                  ...item,
+                  path: data[index].path,
+                  seek: data[index].seek,
+                }
+              })
+              setRecords(recordData)
+            })
+            .catch(console.error)
+        } catch (error) {
+          console.error(error)
+        }
+      }
+    }
+  }, [])
+
+  useEffect(() => {
+    localStorage.setItem(VIDEO_STORAGE_KEY, JSON.stringify(records))
+  }, [records])
 
   const updateVideoRecord = useCallback(
     (v: VideoRecord) => {

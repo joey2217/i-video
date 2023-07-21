@@ -18,7 +18,7 @@ const YunList: React.FC<Props> = ({ yunList }) => {
           target="_blank"
           rel="noopener noreferrer"
           key={item.url}
-          className='text-center px-4 py-1 ring-1 hover:text-blue-600 hover:ring-blue-600 rounded-md'
+          className="text-center px-0.5 md:px-2 lg:px-4 py-1 ring-1 hover:text-blue-600 hover:ring-blue-600 rounded-md truncate"
         >
           {item.name}
         </a>

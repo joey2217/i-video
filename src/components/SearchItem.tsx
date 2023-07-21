@@ -1,5 +1,5 @@
 import type { Video } from '@/types'
-import React, { memo } from 'react'
+import React from 'react'
 import Image from 'next/image'
 
 interface Props {
@@ -58,7 +58,7 @@ const SearchItem: React.FC<Props> = ({ video }) => {
         {video.vod_actor && (
           <div className="row">
             <div className="info-label">演员</div>
-            <div className="info-content" title={video.vod_actor}>
+            <div className="info-content text-ellipsis" title={video.vod_actor}>
               {video.vod_actor}
             </div>
           </div>
@@ -69,7 +69,7 @@ const SearchItem: React.FC<Props> = ({ video }) => {
             <div className="info-content">{video.vod_content}</div>
           </div>
         </div>
-        <button className="w-fit outline outline-1 px-4 py-1 hover:text-blue-500 flex items-center gap-2 rounded-md">
+        <button className="w-fit outline outline-1 px-4 py-1 text-blue-500 hover:text-blue-600/90 flex items-center gap-2 rounded">
           <svg
             width="24"
             height="24"
@@ -91,4 +91,4 @@ const SearchItem: React.FC<Props> = ({ video }) => {
   )
 }
 
-export default memo(SearchItem)
+export default SearchItem

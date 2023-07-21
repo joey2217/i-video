@@ -39,3 +39,11 @@ a.link.active {
 .page {
   @apply px-1 md:px-2 lg:px-4;
 }
+
+.text-ellipsis {
+  -webkit-line-clamp: 2;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

@@ -1,19 +1,28 @@
 import React, { memo } from 'react'
-import type { Video } from '@/types'
+import type { VideoRecord } from '@/types'
 import Link from 'next/link'
 import Image from 'next/image'
 import dayjs from 'dayjs'
 import relativeTime from 'dayjs/plugin/relativeTime'
 import 'dayjs/locale/zh-cn'
+import { FluentDelete } from './Icons'
+import { useVideoRecord } from '@/context/VideoRecordContext'
 
 dayjs.extend(relativeTime)
 dayjs.locale('zh-cn')
 
 interface Props {
-  video: Video
+  video: VideoRecord
 }
 
 const VideoRecordCard: React.FC<Props> = ({ video }) => {
+  const { removeVideoRecord } = useVideoRecord()
+
+  const onRemove = (e: React.MouseEvent) => {
+    e.preventDefault()
+    removeVideoRecord(video)
+  }
+
   return (
     <Link
       href={`/v/${video.vod_id}`}
@@ -34,10 +43,19 @@ const VideoRecordCard: React.FC<Props> = ({ video }) => {
           {dayjs(video.vod_time).fromNow()}更新({video.vod_remarks})
         </div>
       </div>
-      <div className="truncate text-base text-opacity-90 p-1 hover:text-blue-600">
-        {video.vod_name}
+      <div className="flex">
+        <div className="flex-1">
+          <div className="truncate text-base text-opacity-90 p-1 hover:text-blue-600">
+            {video.vod_name}
+          </div>
+          <div className="truncate text-neutral-500 px-1 pb-1">
+            {video.vod_tag}
+          </div>
+        </div>
+        <button className="text-4xl" title='移除' onClick={onRemove}>
+          <FluentDelete />
+        </button>
       </div>
-      <div className="truncate text-neutral-500 px-1 pb-1">{video.vod_tag}</div>
     </Link>
   )
 }

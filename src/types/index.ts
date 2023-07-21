@@ -48,7 +48,7 @@ export interface Video {
 }
 
 export interface VideoRecord extends Video {
-  path: string
+  path: string | null
   seek: number
 }
 
