@@ -171,7 +171,7 @@ const HlsPlayer: React.FC<Props> = ({ liveUrl, seek, onEnd, onTimeUpdate }) => {
   }, [onEnd, onTimeUpdate, seek])
 
   return (
-    <video ref={videoEl} controls autoPlay className="w-full h-fit"></video>
+    <video ref={videoEl} controls autoPlay className="w-full h-fit outline-none"></video>
   )
 }
 

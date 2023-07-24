@@ -51,6 +51,7 @@ export const VideoRecordProvider: React.FC<PropsWithChildren> = ({
                     console.log(item.vod_id === data[index].vod_id)
                     return {
                       ...item,
+                      date: data[index].date,
                       path: data[index].path,
                       seek: data[index].seek,
                     }
@@ -74,13 +75,17 @@ export const VideoRecordProvider: React.FC<PropsWithChildren> = ({
   const updateVideoRecord = useCallback(
     (v: VideoRecord) => {
       setRecords((list) => {
-        const r = { ...v, vod_play_url: '', vod_content: '', vod_actor: '' }
-        const index = list.findIndex((item) => item.vod_id === r.vod_id)
-        if (index === -1) {
-          return [r, ...list].slice(0, MAX_VIDEO_RECORD_COUNT)
-        } else {
-          return [...list.slice(0, index), r, ...list.slice(index + 1)]
+        const r = {
+          ...v,
+          date: Date.now(),
+          vod_play_url: '',
+          vod_content: '',
+          vod_actor: '',
         }
+        return [r, ...list.filter((item) => item.vod_id !== r.vod_id)].slice(
+          0,
+          MAX_VIDEO_RECORD_COUNT
+        )
       })
     },
     [setRecords]

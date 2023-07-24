@@ -28,14 +28,13 @@ const VideoCard: React.FC<Props> = ({ video }) => {
         <div className="absolute top-0 right-0  text-sm bg-gray-400 bg-opacity-80 text-white px-1">
           豆瓣 : {video.vod_douban_score || '无'}
         </div>
-        <div className="absolute bottom-0 right-0 text-sm bg-gray-400 bg-opacity-80 text-white px-1 truncate">
-          {dayjs(video.vod_time).fromNow()}更新({video.vod_remarks})
-        </div>
       </div>
       <div className="truncate text-base text-opacity-90 p-1 hover:text-blue-600">
         {video.vod_name}
       </div>
-      <div className="truncate text-neutral-500 px-1 pb-1">{video.vod_tag}</div>
+      <div className="truncate text-neutral-500 px-1 pb-1">
+        {video.vod_remarks}({dayjs(video.vod_time).fromNow()})
+      </div>
     </Link>
   )
 }

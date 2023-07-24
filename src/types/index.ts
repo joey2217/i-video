@@ -50,6 +50,7 @@ export interface Video {
 export interface VideoRecord extends Video {
   path: string | null
   seek: number
+  date: number
 }
 
 export interface PlayItem {

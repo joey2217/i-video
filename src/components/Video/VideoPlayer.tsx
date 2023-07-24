@@ -19,7 +19,7 @@ const VideoPlayer: React.FC<Props> = ({ liveUrl, video, nextUrl }) => {
 
   let current = records.find((r) => r.path === pathname)
   if (current == null) {
-    current = { ...video, path: pathname, seek: 0 }
+    current = { ...video, path: pathname, seek: 0, date: Date.now() }
     updateVideoRecord(current)
   }
 
