@@ -37,7 +37,7 @@ export const VideoRecordProvider: React.FC<PropsWithChildren> = ({
           setRecords(data)
           const ids = data.map((v) => v.vod_id)
           if (ids.length > 0) {
-            fetch(`/api/video_list?ac=detail&ids=${ids}`)
+            fetch(`/fetch/json?ac=detail&ids=${ids}`)
               .then((res) => res.json() as Promise<VideoResponse>)
               .then((res) => {
                 res.list.sort(

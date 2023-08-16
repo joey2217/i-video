@@ -1,0 +1,8 @@
+{
+    "rewrites": [
+        {
+            "source": "/fetch/:match*",
+            "destination": "https://jyzyapi.com/provide/vod/from/jinyingm3u8/at/:match*"
+        }
+    ]
+}
