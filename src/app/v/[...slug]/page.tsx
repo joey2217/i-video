@@ -6,6 +6,12 @@ import { parseVideoPlayUrl } from '@/utils'
 import { BASE_URL } from '@/utils/constants'
 import { Metadata } from 'next'
 
+// false | 'force-cache' | 0 | number
+export const revalidate = 7200
+// 'auto' | 'default-cache' | 'only-cache'
+// 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'
+export const fetchCache = 'default-no-store'
+
 export async function generateMetadata({
   params,
 }: {

@@ -3,6 +3,12 @@ import VideoCard from '@/components/VideoCard'
 import type { TypeKey, VideoResponse } from '@/types'
 import { BASE_URL, RESOURCE_TYPES } from '@/utils/constants'
 
+// false | 'force-cache' | 0 | number
+export const revalidate = 7200
+// 'auto' | 'default-cache' | 'only-cache'
+// 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'
+export const fetchCache = 'default-no-store'
+
 export default async function Page({ params }: { params: { slug: string[] } }) {
   const [res = 'movie', typeStr, pageStr] = params.slug || []
   const types = RESOURCE_TYPES[res as TypeKey]

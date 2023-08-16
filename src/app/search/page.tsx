@@ -4,6 +4,12 @@ import { VideoResponse } from '@/types'
 import { BASE_URL } from '@/utils/constants'
 import Link from 'next/link'
 
+// false | 'force-cache' | 0 | number
+export const revalidate = 7200
+// 'auto' | 'default-cache' | 'only-cache'
+// 'force-cache' | 'force-no-store' | 'default-no-store' | 'only-no-store'
+export const fetchCache = 'default-no-store'
+
 export default async function SearchPage({
   searchParams,
 }: {
