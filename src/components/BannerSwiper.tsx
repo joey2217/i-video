@@ -21,7 +21,6 @@ const BannerSwiper: React.FC<Props> = ({ bannerData }) => {
   return (
     <Swiper
       navigation={true}
-      autoplay
       loop
       pagination={{ clickable: true }}
       modules={[Pagination, Navigation, Autoplay]}
@@ -42,6 +41,7 @@ const BannerSwiper: React.FC<Props> = ({ bannerData }) => {
 const BannerSlide: React.FC<Banner> = (banner) => (
   <div className="relative max-h-[600px]">
     <Image
+      className="h-[250px] sm:h-[300px] md:h-[400px] lg:h-[500px] xl:h-[600px] object-cover"
       src={banner.banner}
       width={1920}
       height={720}
