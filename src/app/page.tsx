@@ -5,6 +5,8 @@ import type { VideoResponse } from '@/types'
 import { BASE_URL, HOT, RESOURCE_TYPES } from '@/utils/constants'
 import Link from 'next/link'
 
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 // false | 'force-cache' | 0 | number
 export const revalidate = 7200
 // 'auto' | 'default-cache' | 'only-cache'

@@ -3,6 +3,8 @@ import VideoCard from '@/components/VideoCard'
 import type { TypeKey, VideoResponse } from '@/types'
 import { BASE_URL, RESOURCE_TYPES } from '@/utils/constants'
 
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 // false | 'force-cache' | 0 | number
 export const revalidate = 7200
 // 'auto' | 'default-cache' | 'only-cache'

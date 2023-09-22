@@ -5,6 +5,8 @@ export const metadata: Metadata = {
   title: '搜索 - 视频资源网',
 }
 
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 export default function SearchLayout({
   children,
 }: {

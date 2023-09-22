@@ -6,6 +6,8 @@ import { parseVideoPlayUrl } from '@/utils'
 import { BASE_URL } from '@/utils/constants'
 import { Metadata } from 'next'
 
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+
 // false | 'force-cache' | 0 | number
 export const revalidate = 7200
 // 'auto' | 'default-cache' | 'only-cache'

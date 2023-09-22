@@ -3,6 +3,8 @@ import type { NextApiRequest, NextApiResponse } from 'next'
 type ResponseData = {
   message: string
 }
+
+export const runtime = 'edge'
  
 export default function handler(
   req: NextApiRequest,
