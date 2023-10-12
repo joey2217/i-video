@@ -4,7 +4,7 @@ import { VideoResponse } from '@/types'
 import { BASE_URL } from '@/utils/constants'
 import Link from 'next/link'
 
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+// export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 // false | 'force-cache' | 0 | number
 export const revalidate = 7200

@@ -13,7 +13,7 @@ export const metadata: Metadata = {
   keywords: ['视频', '在线播放', '电影', '电视剧', '动漫', '综艺'],
 }
 
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+// export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 export default function RootLayout({
   children,

@@ -3,7 +3,7 @@ import { RESOURCE_TITLE_MAP, RESOURCE_TYPES } from '@/utils/constants'
 import type { Metadata } from 'next'
 import Link from 'next/link'
 
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+// export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 export function generateMetadata({
   params,

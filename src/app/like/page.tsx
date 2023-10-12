@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: '喜欢 - 视频资源网',
 }
 
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+// export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 
 export default function LikePage({}: {}) {
   return (
